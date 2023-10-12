@@ -1,9 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://bhupojt0swb3m"]
+[gd_scene load_steps=6 format=3 uid="uid://bhupojt0swb3m"]
+
+[ext_resource type="Script" path="res://Logic/MouseLook.gd" id="1_aq7ch"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_svcfi"]
 radius = 0.415637
 
 [sub_resource type="BoxMesh" id="BoxMesh_8lmxv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bbujs"]
+albedo_color = Color(0.909804, 0.564706, 0.156863, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_rnbpr"]
 
@@ -13,18 +18,28 @@ radius = 0.415637
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_svcfi")
 
-[node name="Node3D" type="Node3D" parent="."]
+[node name="MeshParent" type="Node3D" parent="."]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshParent"]
 transform = Transform3D(0.454383, 0, 0, 0, 1.7955, 0, 0, 0, 0.351515, 0, 0.9, 0)
 mesh = SubResource("BoxMesh_8lmxv")
+surface_material_override/0 = SubResource("StandardMaterial3D_bbujs")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Node3D"]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshParent"]
 transform = Transform3D(0.165, 0, 0, 0, 0.165, 0, 0, 0, 0.165, -0.117317, 1.56127, 0.181592)
 mesh = SubResource("SphereMesh_rnbpr")
 skeleton = NodePath("../MeshInstance3D")
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="Node3D"]
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="MeshParent"]
 transform = Transform3D(0.165, 0, 0, 0, 0.165, 0, 0, 0, 0.165, 0.11693, 1.56127, 0.181592)
 mesh = SubResource("SphereMesh_rnbpr")
 skeleton = NodePath("../MeshInstance3D")
+
+[node name="yLook" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.995427, 0)
+script = ExtResource("1_aq7ch")
+
+[node name="xLook" type="Node3D" parent="yLook"]
+
+[node name="Camera3D" type="Camera3D" parent="yLook/xLook"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.28347, -4.65569)

@@ -11,5 +11,15 @@ config_version=5
 [application]
 
 config/name="ThirdPersonProject"
+run/main_scene="res://Levels/TestLevel01.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=1440
+window/size/viewport_height=1080
+
+[rendering]
+
+anti_aliasing/quality/msaa_3d=3

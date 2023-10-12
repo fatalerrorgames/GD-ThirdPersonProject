@@ -1,6 +1,24 @@
-[gd_scene load_steps=6 format=3 uid="uid://bx22ehuuah7iv"]
+[gd_scene load_steps=10 format=3 uid="uid://bx22ehuuah7iv"]
 
+[ext_resource type="Script" path="res://Levels/QuitGame.gd" id="1_fyeas"]
 [ext_resource type="PackedScene" uid="uid://bhupojt0swb3m" path="res://Logic/ThirdPersonCharacter.tscn" id="1_is434"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_51mrn"]
+
+[sub_resource type="Sky" id="Sky_mcotk"]
+sky_material = SubResource("ProceduralSkyMaterial_51mrn")
+
+[sub_resource type="Environment" id="Environment_0a32i"]
+background_mode = 2
+sky = SubResource("Sky_mcotk")
+tonemap_mode = 2
+tonemap_exposure = 0.8
+ssao_enabled = true
+ssil_enabled = true
+glow_enabled = true
+glow_strength = 1.44
+glow_bloom = 0.02
+glow_hdr_threshold = 0.8
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_5p4vy"]
 
@@ -12,6 +30,14 @@ data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0
 [sub_resource type="BoxShape3D" id="BoxShape3D_d3xcm"]
 
 [node name="Node3D" type="Node3D"]
+script = ExtResource("1_fyeas")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.698283, 0.639916, 0.320794, -0.0544591, -0.399357, 0.915177, 0.713748, -0.656522, -0.244015, 0, 5.89417, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_0a32i")
 
 [node name="GroundPlane" type="MeshInstance3D" parent="."]
 transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0, 0)
