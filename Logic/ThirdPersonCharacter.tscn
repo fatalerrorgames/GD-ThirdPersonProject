@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bhupojt0swb3m"]
+[gd_scene load_steps=7 format=3 uid="uid://bhupojt0swb3m"]
 
 [ext_resource type="Script" path="res://Logic/MouseLook.gd" id="1_aq7ch"]
 
@@ -8,11 +8,22 @@ radius = 0.415637
 [sub_resource type="BoxMesh" id="BoxMesh_8lmxv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bbujs"]
-albedo_color = Color(0.909804, 0.564706, 0.156863, 1)
+albedo_color = Color(1, 0.498039, 0, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_rnbpr"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kob78"]
+albedo_color = Color(0.168627, 0.168627, 0.168627, 1)
+
 [node name="CharacterBody3D" type="CharacterBody3D"]
+
+[node name="StateMachine" type="Node" parent="."]
+
+[node name="Move" type="Node" parent="StateMachine"]
+
+[node name="Climb" type="Node" parent="StateMachine"]
+
+[node name="Combat" type="Node" parent="StateMachine"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -35,11 +46,27 @@ transform = Transform3D(0.165, 0, 0, 0, 0.165, 0, 0, 0, 0.165, 0.11693, 1.56127,
 mesh = SubResource("SphereMesh_rnbpr")
 skeleton = NodePath("../MeshInstance3D")
 
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="MeshParent"]
+transform = Transform3D(0.085, 0, 0, 0, 0.085, 0, 0, 0, 0.085, -0.117317, 1.56127, 0.232727)
+mesh = SubResource("SphereMesh_rnbpr")
+skeleton = NodePath("../MeshInstance3D")
+surface_material_override/0 = SubResource("StandardMaterial3D_kob78")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="MeshParent"]
+transform = Transform3D(0.085, 0, 0, 0, 0.085, 0, 0, 0, 0.085, 0.11693, 1.56127, 0.232727)
+mesh = SubResource("SphereMesh_rnbpr")
+skeleton = NodePath("../MeshInstance3D")
+surface_material_override/0 = SubResource("StandardMaterial3D_kob78")
+
 [node name="yLook" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.995427, 0)
 script = ExtResource("1_aq7ch")
 
 [node name="xLook" type="Node3D" parent="yLook"]
 
-[node name="Camera3D" type="Camera3D" parent="yLook/xLook"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.28347, -4.65569)
+[node name="SpringArm3D" type="SpringArm3D" parent="yLook/xLook"]
+transform = Transform3D(1, 0, 0, 0, 0.961262, -0.275637, 0, 0.275637, 0.961262, 0, 0, 0)
+spring_length = -4.7
+
+[node name="Camera3D" type="Camera3D" parent="yLook/xLook/SpringArm3D"]
+transform = Transform3D(-1, 0, -8.74228e-08, 2.4097e-08, 0.961262, -0.275637, 8.40362e-08, -0.275637, -0.961262, 0, -0.00706917, -4.67932)
