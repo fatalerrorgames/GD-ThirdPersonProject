@@ -1,6 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bhupojt0swb3m"]
+[gd_scene load_steps=9 format=3 uid="uid://bhupojt0swb3m"]
 
+[ext_resource type="Script" path="res://Logic/Scripts/ThirdPersonCharacter.gd" id="1_6dg0m"]
 [ext_resource type="Script" path="res://Logic/MouseLook.gd" id="1_aq7ch"]
+[ext_resource type="Script" path="res://Logic/Scripts/States/StateMachine.gd" id="2_3crjg"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_svcfi"]
 radius = 0.415637
@@ -16,8 +18,10 @@ albedo_color = Color(1, 0.498039, 0, 1)
 albedo_color = Color(0.168627, 0.168627, 0.168627, 1)
 
 [node name="CharacterBody3D" type="CharacterBody3D"]
+script = ExtResource("1_6dg0m")
 
 [node name="StateMachine" type="Node" parent="."]
+script = ExtResource("2_3crjg")
 
 [node name="Move" type="Node" parent="StateMachine"]
 
