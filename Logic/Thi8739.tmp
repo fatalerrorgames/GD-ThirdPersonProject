@@ -1,11 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://bhupojt0swb3m"]
+[gd_scene load_steps=10 format=3 uid="uid://bhupojt0swb3m"]
 
 [ext_resource type="Script" path="res://Logic/Scripts/ThirdPersonCharacter.gd" id="1_6dg0m"]
 [ext_resource type="Script" path="res://Logic/MouseLook.gd" id="1_aq7ch"]
 [ext_resource type="Script" path="res://Logic/Scripts/States/StateMachine.gd" id="2_3crjg"]
 [ext_resource type="Script" path="res://Logic/Scripts/States/MoveState.gd" id="3_d3rn7"]
-[ext_resource type="Script" path="res://Logic/Scripts/smoothparent.gd" id="4_075td"]
-[ext_resource type="PackedScene" uid="uid://b7aomw74ltcos" path="res://Assets/GD-TPP-Character-2023-10-16-10.gltf" id="5_dw1ik"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_svcfi"]
 radius = 0.415637
@@ -43,41 +41,32 @@ shape = SubResource("CapsuleShape3D_svcfi")
 
 [node name="MeshParent" type="Node3D" parent="."]
 
-[node name="smoothparent" type="Node3D" parent="." node_paths=PackedStringArray("Parent")]
-script = ExtResource("4_075td")
-Parent = NodePath("../MeshParent")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="smoothparent"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshParent"]
 transform = Transform3D(0.454383, 0, 0, 0, 1.7955, 0, 0, 0, 0.351515, 0, 0.9, 0)
 mesh = SubResource("BoxMesh_8lmxv")
-skeleton = NodePath("../../MeshParent")
 surface_material_override/0 = SubResource("StandardMaterial3D_bbujs")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="smoothparent"]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshParent"]
 transform = Transform3D(0.165, 0, 0, 0, 0.165, 0, 0, 0, 0.165, -0.117317, 1.56127, 0.181592)
 mesh = SubResource("SphereMesh_rnbpr")
 skeleton = NodePath("../MeshInstance3D")
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="smoothparent"]
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="MeshParent"]
 transform = Transform3D(0.165, 0, 0, 0, 0.165, 0, 0, 0, 0.165, 0.11693, 1.56127, 0.181592)
 mesh = SubResource("SphereMesh_rnbpr")
 skeleton = NodePath("../MeshInstance3D")
 
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="smoothparent"]
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="MeshParent"]
 transform = Transform3D(0.085, 0, 0, 0, 0.085, 0, 0, 0, 0.085, -0.117317, 1.56127, 0.232727)
 mesh = SubResource("SphereMesh_rnbpr")
 skeleton = NodePath("../MeshInstance3D")
 surface_material_override/0 = SubResource("StandardMaterial3D_kob78")
 
-[node name="MeshInstance3D5" type="MeshInstance3D" parent="smoothparent"]
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="MeshParent"]
 transform = Transform3D(0.085, 0, 0, 0, 0.085, 0, 0, 0, 0.085, 0.11693, 1.56127, 0.232727)
 mesh = SubResource("SphereMesh_rnbpr")
 skeleton = NodePath("../MeshInstance3D")
 surface_material_override/0 = SubResource("StandardMaterial3D_kob78")
-
-[node name="GD-TPP-Character-2023-10-16-10" parent="smoothparent" instance=ExtResource("5_dw1ik")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
-visible = false
 
 [node name="yLook" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.995427, 0)
