@@ -1,3 +1,4 @@
+#Smooth the rotation of the Character Mesh
 extends Node3D
 
 @export var Parent = Node3D

@@ -1,5 +1,5 @@
 extends State
-class_name MoveState
+class_name CombatState
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -10,9 +10,9 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @export var MeshParent: Node3D
 
 # Variables for Movement
-@export var SPEED = 4.0
-@export var JUMP_VELOCITY = 5.5
-@export var ACCELERATION = 0.1
+@export var SPEED = 3.0
+@export var JUMP_VELOCITY = 2
+@export var ACCELERATION = 0.3
 @export var DEACCELERATION = 0.07
 
 # used for calculations
@@ -26,12 +26,8 @@ func Enter():
 	deacc_process = DEACCELERATION
 
 func Update(delta: float):
-	if MeshParent.global_transform.origin != MeshParent.global_transform.origin + -body.velocity:
-		#rotate MeshParent towards movement direction
-		MeshParent.look_at_from_position(MeshParent.global_transform.origin, MeshParent.global_transform.origin + -body.velocity)
-		#clamp x and z rotation
-		MeshParent.rotation.x = clamp(MeshParent.rotation.x, deg_to_rad(0), deg_to_rad(0))
-		MeshParent.rotation.z = clamp(MeshParent.rotation.z, deg_to_rad(0), deg_to_rad(0))
+	#orient Character along yLook
+	MeshParent.rotation.y = yLook.rotation.y
 
 func Physics_Update(delta: float):
 	
@@ -45,8 +41,8 @@ func Physics_Update(delta: float):
 		deacc_process = DEACCELERATION
 
 	# Handle Jump.
-	if Input.is_action_just_pressed("ui_accept") and body.is_on_floor():
-		body.velocity.y = JUMP_VELOCITY
+	#if Input.is_action_just_pressed("ui_accept") and body.is_on_floor():
+	#	body.velocity = Vector3(body.velocity.x * 4, JUMP_VELOCITY, body.velocity.z * 4)
 
 	# Get the input direction and handle the movement/deceleration.
 	var input_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down")
@@ -56,6 +52,9 @@ func Physics_Update(delta: float):
 		body.velocity.x = lerp(body.velocity.x , direction.x * SPEED, acc_process)
 		body.velocity.z = lerp(body.velocity.z, direction.z * SPEED, acc_process)
 		
+		# DODGE gets called only if direction true, otherwise we can infinitely accelerate by repeatetely dodging
+		if Input.is_action_just_pressed("ui_accept") and body.is_on_floor():
+			body.velocity = Vector3(body.velocity.x * 4, JUMP_VELOCITY, body.velocity.z * 4)
 		
 	
 	else:

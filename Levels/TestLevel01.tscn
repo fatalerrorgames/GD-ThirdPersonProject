@@ -35,12 +35,15 @@ script = ExtResource("1_fyeas")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.698283, 0.639916, 0.320794, -0.0544591, -0.399357, 0.915177, 0.713748, -0.656522, -0.244015, 0, 5.89417, 0)
 shadow_enabled = true
+shadow_bias = 0.05
+shadow_normal_bias = 3.0
+shadow_blur = 2.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_0a32i")
 
 [node name="GroundPlane" type="MeshInstance3D" parent="."]
-transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0, 0)
+transform = Transform3D(80, 0, 0, 0, 80, 0, 0, 0, 80, 0, 0, 0)
 mesh = SubResource("PlaneMesh_5p4vy")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="GroundPlane"]

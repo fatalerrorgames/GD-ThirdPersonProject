@@ -1,19 +1,18 @@
-[gd_scene load_steps=12 format=3 uid="uid://bhupojt0swb3m"]
+[gd_scene load_steps=13 format=3 uid="uid://bhupojt0swb3m"]
 
 [ext_resource type="Script" path="res://Logic/Scripts/ThirdPersonCharacter.gd" id="1_6dg0m"]
 [ext_resource type="Script" path="res://Logic/MouseLook.gd" id="1_aq7ch"]
 [ext_resource type="Script" path="res://Logic/Scripts/States/StateMachine.gd" id="2_3crjg"]
 [ext_resource type="Script" path="res://Logic/Scripts/States/MoveState.gd" id="3_d3rn7"]
 [ext_resource type="Script" path="res://Logic/Scripts/smoothparent.gd" id="4_075td"]
+[ext_resource type="Script" path="res://Logic/Scripts/States/CombatState.gd" id="4_bixtw"]
 [ext_resource type="PackedScene" uid="uid://b7aomw74ltcos" path="res://Assets/GD-TPP-Character-2023-10-16-10.gltf" id="5_dw1ik"]
+[ext_resource type="Material" uid="uid://b08pu4garfulv" path="res://Assets/Materials/Orange.tres" id="5_p0egy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_svcfi"]
 radius = 0.415637
 
 [sub_resource type="BoxMesh" id="BoxMesh_8lmxv"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bbujs"]
-albedo_color = Color(1, 0.498039, 0, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_rnbpr"]
 
@@ -25,7 +24,7 @@ script = ExtResource("1_6dg0m")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_3crjg")
-initial_state = NodePath("MoveState")
+initial_state = NodePath("CombatState")
 
 [node name="MoveState" type="Node" parent="StateMachine" node_paths=PackedStringArray("body", "yLook", "MeshParent")]
 script = ExtResource("3_d3rn7")
@@ -33,9 +32,13 @@ body = NodePath("../..")
 yLook = NodePath("../../yLook")
 MeshParent = NodePath("../../MeshParent")
 
-[node name="Climb" type="Node" parent="StateMachine"]
+[node name="CombatState" type="Node" parent="StateMachine" node_paths=PackedStringArray("body", "yLook", "MeshParent")]
+script = ExtResource("4_bixtw")
+body = NodePath("../..")
+yLook = NodePath("../../yLook")
+MeshParent = NodePath("../../MeshParent")
 
-[node name="Combat" type="Node" parent="StateMachine"]
+[node name="Climb" type="Node" parent="StateMachine"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -47,11 +50,13 @@ shape = SubResource("CapsuleShape3D_svcfi")
 script = ExtResource("4_075td")
 Parent = NodePath("../MeshParent")
 
+[node name="Weapon" type="Node3D" parent="smoothparent"]
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="smoothparent"]
 transform = Transform3D(0.454383, 0, 0, 0, 1.7955, 0, 0, 0, 0.351515, 0, 0.9, 0)
 mesh = SubResource("BoxMesh_8lmxv")
 skeleton = NodePath("../../MeshParent")
-surface_material_override/0 = SubResource("StandardMaterial3D_bbujs")
+surface_material_override/0 = ExtResource("5_p0egy")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="smoothparent"]
 transform = Transform3D(0.165, 0, 0, 0, 0.165, 0, 0, 0, 0.165, -0.117317, 1.56127, 0.181592)
