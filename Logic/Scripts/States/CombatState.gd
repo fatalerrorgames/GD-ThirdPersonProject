@@ -30,7 +30,8 @@ func Update(delta: float):
 	MeshParent.rotation.y = yLook.rotation.y
 
 func Physics_Update(delta: float):
-	
+	if Input.is_action_just_pressed("attack"):
+			body.velocity = (yLook.transform.basis * Vector3(0, 0, 7))
 	# Add the gravity.
 	if not body.is_on_floor():
 		body.velocity.y -= gravity * delta
@@ -60,6 +61,10 @@ func Physics_Update(delta: float):
 	else:
 		body.velocity.x = lerp(body.velocity.x , direction.x * SPEED, deacc_process)
 		body.velocity.z = lerp(body.velocity.z, direction.z * SPEED, deacc_process)
+	
+	#transition to movestate
+	if Input.is_action_just_pressed("draw"):
+			Transitioned.emit(self, "MoveState")
 
 
 

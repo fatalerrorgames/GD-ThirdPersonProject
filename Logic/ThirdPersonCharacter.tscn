@@ -24,7 +24,7 @@ script = ExtResource("1_6dg0m")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_3crjg")
-initial_state = NodePath("CombatState")
+initial_state = NodePath("MoveState")
 
 [node name="MoveState" type="Node" parent="StateMachine" node_paths=PackedStringArray("body", "yLook", "MeshParent")]
 script = ExtResource("3_d3rn7")
@@ -37,6 +37,16 @@ script = ExtResource("4_bixtw")
 body = NodePath("../..")
 yLook = NodePath("../../yLook")
 MeshParent = NodePath("../../MeshParent")
+
+[node name="DodgeTimer" type="Timer" parent="StateMachine/CombatState"]
+process_callback = 0
+wait_time = 0.5
+one_shot = true
+
+[node name="AttackTimer" type="Timer" parent="StateMachine/CombatState"]
+process_callback = 0
+wait_time = 0.5
+one_shot = true
 
 [node name="Climb" type="Node" parent="StateMachine"]
 

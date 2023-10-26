@@ -33,8 +33,8 @@ func on_child_transition(state, new_state_name):#------------takes in state that
 		return
 	
 	if current_state:#---------------------------------------if we have a current state exit it
-		current_state.exit()
+		current_state.Exit()
 	
-	new_state.enter()#---------------------------------------enter new state
+	new_state.Enter()#---------------------------------------enter new state
 	
 	current_state = new_state #------------------------------set current state to the new state
