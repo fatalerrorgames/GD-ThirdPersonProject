@@ -9,6 +9,9 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @export var yLook: Node3D
 @export var MeshParent: Node3D
 
+@export var AttackTimer: Timer
+@export var DodgeTimer: Timer
+
 # Variables for Movement
 @export var SPEED = 3.0
 @export var JUMP_VELOCITY = 2
@@ -19,6 +22,9 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var acc_process
 var deacc_process
 
+var can_attack = true
+var can_dodge = true
+
 
 
 func Enter():
@@ -28,10 +34,14 @@ func Enter():
 func Update(delta: float):
 	#orient Character along yLook
 	MeshParent.rotation.y = yLook.rotation.y
+	
 
 func Physics_Update(delta: float):
-	if Input.is_action_just_pressed("attack"):
-			body.velocity = (yLook.transform.basis * Vector3(0, 0, 7))
+
+	if Input.is_action_just_pressed("attack") and can_attack and can_dodge:
+		body.velocity = (yLook.transform.basis * Vector3(0, 0, 7))
+		AttackTimer.start()#starts the attack timer
+		can_attack = false
 	# Add the gravity.
 	if not body.is_on_floor():
 		body.velocity.y -= gravity * delta
@@ -54,8 +64,10 @@ func Physics_Update(delta: float):
 		body.velocity.z = lerp(body.velocity.z, direction.z * SPEED, acc_process)
 		
 		# DODGE gets called only if direction true, otherwise we can infinitely accelerate by repeatetely dodging
-		if Input.is_action_just_pressed("ui_accept") and body.is_on_floor():
+		if Input.is_action_just_pressed("jump") and body.is_on_floor() and can_dodge:
 			body.velocity = Vector3(body.velocity.x * 4, JUMP_VELOCITY, body.velocity.z * 4)
+			DodgeTimer.start()#starts the attack timer
+			can_dodge = false
 		
 	
 	else:
@@ -63,8 +75,16 @@ func Physics_Update(delta: float):
 		body.velocity.z = lerp(body.velocity.z, direction.z * SPEED, deacc_process)
 	
 	#transition to movestate
-	if Input.is_action_just_pressed("draw"):
+	if Input.is_action_just_pressed("draw") and can_attack and can_dodge:
 			Transitioned.emit(self, "MoveState")
 
 
 
+
+#signals from attack and dodge timer
+func _on_attack_timer_timeout():
+	can_attack = true
+
+
+func _on_dodge_timer_timeout():
+	can_dodge = true

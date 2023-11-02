@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bhupojt0swb3m"]
+[gd_scene load_steps=16 format=3 uid="uid://bhupojt0swb3m"]
 
 [ext_resource type="Script" path="res://Logic/Scripts/ThirdPersonCharacter.gd" id="1_6dg0m"]
 [ext_resource type="Script" path="res://Logic/MouseLook.gd" id="1_aq7ch"]
@@ -8,9 +8,14 @@
 [ext_resource type="Script" path="res://Logic/Scripts/States/CombatState.gd" id="4_bixtw"]
 [ext_resource type="PackedScene" uid="uid://b7aomw74ltcos" path="res://Assets/GD-TPP-Character-2023-10-16-10.gltf" id="5_dw1ik"]
 [ext_resource type="Material" uid="uid://b08pu4garfulv" path="res://Assets/Materials/Orange.tres" id="5_p0egy"]
+[ext_resource type="Script" path="res://Logic/Scripts/States/Weapons/SwordState.gd" id="6_iy2yh"]
+[ext_resource type="Script" path="res://Logic/Scripts/States/Weapons/WeaponMasterState.gd" id="7_hgcxk"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_svcfi"]
 radius = 0.415637
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jjjwh"]
+size = Vector3(1.03567, 0.24364, 1.22199)
 
 [sub_resource type="BoxMesh" id="BoxMesh_8lmxv"]
 
@@ -32,18 +37,20 @@ body = NodePath("../..")
 yLook = NodePath("../../yLook")
 MeshParent = NodePath("../../MeshParent")
 
-[node name="CombatState" type="Node" parent="StateMachine" node_paths=PackedStringArray("body", "yLook", "MeshParent")]
+[node name="CombatState" type="Node" parent="StateMachine" node_paths=PackedStringArray("body", "yLook", "MeshParent", "AttackTimer", "DodgeTimer")]
 script = ExtResource("4_bixtw")
 body = NodePath("../..")
 yLook = NodePath("../../yLook")
 MeshParent = NodePath("../../MeshParent")
-
-[node name="DodgeTimer" type="Timer" parent="StateMachine/CombatState"]
-process_callback = 0
-wait_time = 0.5
-one_shot = true
+AttackTimer = NodePath("AttackTimer")
+DodgeTimer = NodePath("DodgeTimer")
 
 [node name="AttackTimer" type="Timer" parent="StateMachine/CombatState"]
+process_callback = 0
+wait_time = 0.25
+one_shot = true
+
+[node name="DodgeTimer" type="Timer" parent="StateMachine/CombatState"]
 process_callback = 0
 wait_time = 0.5
 one_shot = true
@@ -61,6 +68,25 @@ script = ExtResource("4_075td")
 Parent = NodePath("../MeshParent")
 
 [node name="Weapon" type="Node3D" parent="smoothparent"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="WeaponStateMachine" type="Node" parent="smoothparent/Weapon" node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_3crjg")
+initial_state = NodePath("WeaponMasterState")
+
+[node name="WeaponMasterState" type="Node" parent="smoothparent/Weapon/WeaponStateMachine"]
+script = ExtResource("7_hgcxk")
+
+[node name="SwordState" type="Node" parent="smoothparent/Weapon/WeaponStateMachine"]
+script = ExtResource("6_iy2yh")
+
+[node name="SwordHit" type="Area3D" parent="smoothparent/Weapon"]
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="smoothparent/Weapon/SwordHit"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.87819)
+shape = SubResource("BoxShape3D_jjjwh")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="smoothparent"]
 transform = Transform3D(0.454383, 0, 0, 0, 1.7955, 0, 0, 0, 0.351515, 0, 0.9, 0)
@@ -106,3 +132,6 @@ spring_length = -4.7
 
 [node name="Camera3D" type="Camera3D" parent="yLook/xLook/SpringArm3D"]
 transform = Transform3D(-1, 0, -8.74228e-08, 2.4097e-08, 0.961262, -0.275637, 8.40362e-08, -0.275637, -0.961262, 0, -0.00706917, -4.67932)
+
+[connection signal="timeout" from="StateMachine/CombatState/AttackTimer" to="StateMachine/CombatState" method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="StateMachine/CombatState/DodgeTimer" to="StateMachine/CombatState" method="_on_dodge_timer_timeout"]

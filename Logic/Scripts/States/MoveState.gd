@@ -8,6 +8,8 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @export var body: CharacterBody3D
 @export var yLook: Node3D
 @export var MeshParent: Node3D
+#@export var RaycastParent: Node3D
+#@export var TestCast: Node3D
 
 # Variables for Movement
 @export var SPEED = 4.0
@@ -45,13 +47,17 @@ func Physics_Update(delta: float):
 		deacc_process = DEACCELERATION
 
 	# Handle Jump.
-	if Input.is_action_just_pressed("ui_accept") and body.is_on_floor():
+	if Input.is_action_just_pressed("jump") and body.is_on_floor():
 		body.velocity.y = JUMP_VELOCITY
 
 	# Get the input direction and handle the movement/deceleration.
 	var input_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	var direction = (yLook.transform.basis * Vector3(-input_dir.x, 0, -input_dir.y)).normalized()
-
+	
+	#orient climb raycasts along input direction
+	#if RaycastParent.global_transform.origin != RaycastParent.global_transform.origin + -direction:
+	#	RaycastParent.look_at_from_position(RaycastParent.global_transform.origin, RaycastParent.global_transform.origin + -direction)
+	
 	if direction:
 		body.velocity.x = lerp(body.velocity.x , direction.x * SPEED, acc_process)
 		body.velocity.z = lerp(body.velocity.z, direction.z * SPEED, acc_process)

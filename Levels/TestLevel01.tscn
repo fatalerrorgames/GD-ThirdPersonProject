@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://bx22ehuuah7iv"]
+[gd_scene load_steps=15 format=3 uid="uid://bx22ehuuah7iv"]
 
 [ext_resource type="Script" path="res://Levels/QuitGame.gd" id="1_fyeas"]
 [ext_resource type="PackedScene" uid="uid://bhupojt0swb3m" path="res://Logic/ThirdPersonCharacter.tscn" id="1_is434"]
 [ext_resource type="Material" uid="uid://diywov2vlsyt7" path="res://Assets/Materials/Blue.tres" id="2_niylm"]
+[ext_resource type="Material" uid="uid://b08pu4garfulv" path="res://Assets/Materials/Orange.tres" id="4_x02rg"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_51mrn"]
 
@@ -29,6 +30,14 @@ data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0
 [sub_resource type="BoxMesh" id="BoxMesh_7r2vk"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_d3xcm"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0cgl8"]
+radius = 0.414192
+
+[sub_resource type="BoxMesh" id="BoxMesh_0f2r3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_k7c6j"]
+size = Vector3(0.581065, 2.01061, 0.587412)
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_fyeas")
@@ -82,6 +91,16 @@ mesh = SubResource("BoxMesh_7r2vk")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cube6/StaticBody3D"]
 shape = SubResource("BoxShape3D_d3xcm")
 
+[node name="Cube7" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.41421, -1.41421, 0, 1.41421, 1.41421, 0, 0, 0, 2, 3.86737, -0.412718, 2.20951)
+material_override = ExtResource("2_niylm")
+mesh = SubResource("BoxMesh_7r2vk")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Cube7"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube7/StaticBody3D"]
+shape = SubResource("BoxShape3D_d3xcm")
+
 [node name="Cube2" type="MeshInstance3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -4.42039, 1, 3.92737)
 material_override = ExtResource("2_niylm")
@@ -113,3 +132,21 @@ mesh = SubResource("BoxMesh_7r2vk")
 shape = SubResource("BoxShape3D_d3xcm")
 
 [node name="CharacterBody3D" parent="." instance=ExtResource("1_is434")]
+
+[node name="Dummy" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.73637)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Dummy"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_0cgl8")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Dummy"]
+transform = Transform3D(0.5, 0, 0, 0, 1.9, 0, 0, 0, 0.5, 0, 0.958192, 0)
+mesh = SubResource("BoxMesh_0f2r3")
+surface_material_override/0 = ExtResource("4_x02rg")
+
+[node name="HitBox" type="Area3D" parent="Dummy" groups=["HitBox"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Dummy/HitBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("BoxShape3D_k7c6j")
