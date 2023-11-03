@@ -85,6 +85,5 @@ func Physics_Update(delta: float):
 func _on_attack_timer_timeout():
 	can_attack = true
 
-
 func _on_dodge_timer_timeout():
 	can_dodge = true

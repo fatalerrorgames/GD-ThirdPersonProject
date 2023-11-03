@@ -13,13 +13,15 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 # Variables for Movement
 @export var SPEED = 4.0
+@export var SPRINT_MULTIPLIER = 1.8
 @export var JUMP_VELOCITY = 5.5
 @export var ACCELERATION = 0.1
 @export var DEACCELERATION = 0.07
 
-# used for calculations
+# used for calculations or variables that get changed in the code
 var acc_process
 var deacc_process
+var sprint_multiplier_process
 
 
 
@@ -49,6 +51,12 @@ func Physics_Update(delta: float):
 	# Handle Jump.
 	if Input.is_action_just_pressed("jump") and body.is_on_floor():
 		body.velocity.y = JUMP_VELOCITY
+	
+	#sprint	
+	if Input.is_action_pressed("sprint") and body.is_on_floor():
+		sprint_multiplier_process = SPRINT_MULTIPLIER
+	else:
+		sprint_multiplier_process = 1
 
 	# Get the input direction and handle the movement/deceleration.
 	var input_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down")
@@ -59,8 +67,8 @@ func Physics_Update(delta: float):
 	#	RaycastParent.look_at_from_position(RaycastParent.global_transform.origin, RaycastParent.global_transform.origin + -direction)
 	
 	if direction:
-		body.velocity.x = lerp(body.velocity.x , direction.x * SPEED, acc_process)
-		body.velocity.z = lerp(body.velocity.z, direction.z * SPEED, acc_process)
+		body.velocity.x = lerp(body.velocity.x , direction.x * (SPEED * sprint_multiplier_process), acc_process)
+		body.velocity.z = lerp(body.velocity.z, direction.z * (SPEED * sprint_multiplier_process), acc_process)
 		
 		
 	
