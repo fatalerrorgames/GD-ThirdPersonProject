@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bx22ehuuah7iv"]
+[gd_scene load_steps=16 format=3 uid="uid://bx22ehuuah7iv"]
 
 [ext_resource type="Script" path="res://Levels/QuitGame.gd" id="1_fyeas"]
 [ext_resource type="PackedScene" uid="uid://bhupojt0swb3m" path="res://Logic/ThirdPersonCharacter.tscn" id="1_is434"]
@@ -21,6 +21,24 @@ glow_enabled = true
 glow_strength = 1.44
 glow_bloom = 0.02
 glow_hdr_threshold = 0.8
+fog_enabled = true
+fog_light_color = Color(0.427451, 0.576471, 0.654902, 1)
+fog_sky_affect = 0.0
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.005
+volumetric_fog_albedo = Color(0.447059, 0.776471, 0.968627, 1)
+volumetric_fog_emission = Color(0.305882, 0.603922, 0.584314, 1)
+volumetric_fog_sky_affect = 0.886
+adjustment_enabled = true
+adjustment_contrast = 1.1
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_idifn"]
+dof_blur_far_enabled = true
+dof_blur_far_distance = 30.0
+dof_blur_far_transition = 300.0
+dof_blur_near_enabled = true
+dof_blur_near_distance = 3.0
+dof_blur_near_transition = 3.0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_5p4vy"]
 
@@ -51,9 +69,10 @@ shadow_blur = 2.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_0a32i")
+camera_attributes = SubResource("CameraAttributesPractical_idifn")
 
 [node name="GroundPlane" type="MeshInstance3D" parent="."]
-transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0, 0)
+transform = Transform3D(80, 0, 0, 0, 80, 0, 0, 0, 80, 0, 0, 0)
 mesh = SubResource("PlaneMesh_5p4vy")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="GroundPlane"]
