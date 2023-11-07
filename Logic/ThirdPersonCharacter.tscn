@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bhupojt0swb3m"]
+[gd_scene load_steps=17 format=3 uid="uid://bhupojt0swb3m"]
 
 [ext_resource type="Script" path="res://Logic/Scripts/ThirdPersonCharacter.gd" id="1_6dg0m"]
 [ext_resource type="Script" path="res://Logic/MouseLook.gd" id="1_aq7ch"]
@@ -10,6 +10,7 @@
 [ext_resource type="Material" uid="uid://b08pu4garfulv" path="res://Assets/Materials/Orange.tres" id="5_p0egy"]
 [ext_resource type="Script" path="res://Logic/Scripts/States/Weapons/SwordState.gd" id="6_iy2yh"]
 [ext_resource type="Script" path="res://Logic/Scripts/States/Weapons/WeaponMasterState.gd" id="7_hgcxk"]
+[ext_resource type="PackedScene" uid="uid://ceifjmyjmfhau" path="res://Assets/GD-TPP-Character-2023-11-07-16.gltf" id="10_l62rq"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_svcfi"]
 radius = 0.415637
@@ -88,28 +89,33 @@ shape = SubResource("BoxShape3D_jjjwh")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="smoothparent"]
 transform = Transform3D(0.454383, 0, 0, 0, 1.7955, 0, 0, 0, 0.351515, 0, 0.9, 0)
+visible = false
 mesh = SubResource("BoxMesh_8lmxv")
 skeleton = NodePath("../../MeshParent")
 surface_material_override/0 = ExtResource("5_p0egy")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="smoothparent"]
 transform = Transform3D(0.165, 0, 0, 0, 0.165, 0, 0, 0, 0.165, -0.117317, 1.56127, 0.181592)
+visible = false
 mesh = SubResource("SphereMesh_rnbpr")
 skeleton = NodePath("../MeshInstance3D")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="smoothparent"]
 transform = Transform3D(0.165, 0, 0, 0, 0.165, 0, 0, 0, 0.165, 0.11693, 1.56127, 0.181592)
+visible = false
 mesh = SubResource("SphereMesh_rnbpr")
 skeleton = NodePath("../MeshInstance3D")
 
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="smoothparent"]
 transform = Transform3D(0.085, 0, 0, 0, 0.085, 0, 0, 0, 0.085, -0.117317, 1.56127, 0.232727)
+visible = false
 mesh = SubResource("SphereMesh_rnbpr")
 skeleton = NodePath("../MeshInstance3D")
 surface_material_override/0 = SubResource("StandardMaterial3D_kob78")
 
 [node name="MeshInstance3D5" type="MeshInstance3D" parent="smoothparent"]
 transform = Transform3D(0.085, 0, 0, 0, 0.085, 0, 0, 0, 0.085, 0.11693, 1.56127, 0.232727)
+visible = false
 mesh = SubResource("SphereMesh_rnbpr")
 skeleton = NodePath("../MeshInstance3D")
 surface_material_override/0 = SubResource("StandardMaterial3D_kob78")
@@ -117,6 +123,9 @@ surface_material_override/0 = SubResource("StandardMaterial3D_kob78")
 [node name="GD-TPP-Character-2023-10-16-10" parent="smoothparent" instance=ExtResource("5_dw1ik")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 visible = false
+
+[node name="GD-TPP-Character-2023-11-07-16" parent="smoothparent" instance=ExtResource("10_l62rq")]
+transform = Transform3D(0.52, 0, 0, 0, 0.52, 0, 0, 0, 0.52, 0, 0, 0)
 
 [node name="yLook" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.995427, 0)

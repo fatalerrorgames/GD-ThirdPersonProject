@@ -13,6 +13,9 @@ sky_material = SubResource("ProceduralSkyMaterial_51mrn")
 [sub_resource type="Environment" id="Environment_0a32i"]
 background_mode = 2
 sky = SubResource("Sky_mcotk")
+ambient_light_source = 3
+ambient_light_color = Color(0.517647, 0.517647, 0.517647, 1)
+ambient_light_sky_contribution = 0.4
 tonemap_mode = 2
 tonemap_exposure = 0.8
 ssao_enabled = true
@@ -37,7 +40,7 @@ dof_blur_far_enabled = true
 dof_blur_far_distance = 30.0
 dof_blur_far_transition = 300.0
 dof_blur_near_enabled = true
-dof_blur_near_distance = 3.0
+dof_blur_near_distance = 1.57
 dof_blur_near_transition = 3.0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_5p4vy"]

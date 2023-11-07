@@ -1,0 +1,14 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://ceocab1ap7qnn"]
+
+[ext_resource type="Texture2D" uid="uid://15hxymy4pbho" path="res://Assets/Textures/Character/Hair-diffuse.png" id="1_mipxs"]
+[ext_resource type="Texture2D" uid="uid://b5sur6ugmtw2d" path="res://Assets/Textures/Character/Hair-rough.png" id="2_cbj5e"]
+
+[resource]
+transparency = 3
+alpha_hash_scale = 1.0
+alpha_antialiasing_mode = 0
+cull_mode = 2
+albedo_texture = ExtResource("1_mipxs")
+roughness_texture = ExtResource("2_cbj5e")
+backlight_enabled = true
+backlight_texture = ExtResource("1_mipxs")
