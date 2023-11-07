@@ -8,7 +8,11 @@
 albedo_texture = ExtResource("1_i4ovr")
 roughness_texture = ExtResource("3_bcu8o")
 normal_enabled = true
+normal_scale = 0.5
 normal_texture = ExtResource("2_8rxbh")
 subsurf_scatter_enabled = true
-subsurf_scatter_strength = 0.3
+subsurf_scatter_strength = 0.2
 subsurf_scatter_skin_mode = true
+distance_fade_mode = 3
+distance_fade_min_distance = 1.0
+distance_fade_max_distance = 2.0

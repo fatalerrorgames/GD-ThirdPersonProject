@@ -134,11 +134,11 @@ script = ExtResource("1_aq7ch")
 [node name="xLook" type="Node3D" parent="yLook"]
 
 [node name="SpringArm3D" type="SpringArm3D" parent="yLook/xLook"]
-transform = Transform3D(1, 0, 0, 0, 0.961262, -0.275637, 0, 0.275637, 0.961262, 0, 0, 0)
-spring_length = -4.7
+transform = Transform3D(1, 0, 0, 0, 0.945519, -0.325568, 0, 0.325568, 0.945519, 0, 0, 0)
+spring_length = -4.0
 
 [node name="Camera3D" type="Camera3D" parent="yLook/xLook/SpringArm3D"]
-transform = Transform3D(-1, 0, -8.74228e-08, 2.4097e-08, 0.961262, -0.275637, 8.40362e-08, -0.275637, -0.961262, 0, -0.00706917, -4.67932)
+transform = Transform3D(-1, 2.84621e-08, 8.26599e-08, 0, 0.945519, -0.325568, -8.74228e-08, -0.325568, -0.945519, 0, 0, -4)
 
 [connection signal="timeout" from="StateMachine/CombatState/AttackTimer" to="StateMachine/CombatState" method="_on_attack_timer_timeout"]
 [connection signal="timeout" from="StateMachine/CombatState/DodgeTimer" to="StateMachine/CombatState" method="_on_dodge_timer_timeout"]

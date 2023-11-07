@@ -14,7 +14,7 @@ sky_material = SubResource("ProceduralSkyMaterial_51mrn")
 background_mode = 2
 sky = SubResource("Sky_mcotk")
 ambient_light_source = 3
-ambient_light_color = Color(0.517647, 0.517647, 0.517647, 1)
+ambient_light_color = Color(0.631373, 0.631373, 0.631373, 1)
 ambient_light_sky_contribution = 0.4
 tonemap_mode = 2
 tonemap_exposure = 0.8
@@ -62,13 +62,6 @@ size = Vector3(0.581065, 2.01061, 0.587412)
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_fyeas")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.698283, 0.639916, 0.320794, -0.0544591, -0.399357, 0.915177, 0.713748, -0.656522, -0.244015, 0, 5.89417, 0)
-shadow_enabled = true
-shadow_bias = 0.05
-shadow_normal_bias = 3.0
-shadow_blur = 2.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_0a32i")
@@ -154,6 +147,16 @@ mesh = SubResource("BoxMesh_7r2vk")
 shape = SubResource("BoxShape3D_d3xcm")
 
 [node name="CharacterBody3D" parent="." instance=ExtResource("1_is434")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="CharacterBody3D"]
+transform = Transform3D(0.563658, 0.693401, 0.44887, 0.336706, -0.689101, 0.641692, 0.754267, -0.210558, -0.62189, 0, 5.89417, 0)
+light_color = Color(0.921569, 0.921569, 0.921569, 1)
+light_angular_distance = 0.5
+shadow_enabled = true
+shadow_bias = 0.05
+shadow_normal_bias = 3.0
+shadow_blur = 2.2
+directional_shadow_blend_splits = true
 
 [node name="Dummy" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.73637)

@@ -10,3 +10,6 @@ albedo_texture = ExtResource("1_ua5ot")
 roughness_texture = ExtResource("3_74u8n")
 normal_enabled = true
 normal_texture = ExtResource("2_smsid")
+distance_fade_mode = 3
+distance_fade_min_distance = 1.0
+distance_fade_max_distance = 2.0
