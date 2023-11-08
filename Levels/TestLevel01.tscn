@@ -152,10 +152,11 @@ shape = SubResource("BoxShape3D_d3xcm")
 transform = Transform3D(0.563658, 0.693401, 0.44887, 0.336706, -0.689101, 0.641692, 0.754267, -0.210558, -0.62189, 0, 5.89417, 0)
 light_color = Color(0.921569, 0.921569, 0.921569, 1)
 light_angular_distance = 0.5
+light_bake_mode = 0
 shadow_enabled = true
 shadow_bias = 0.05
 shadow_normal_bias = 3.0
-shadow_blur = 2.2
+shadow_blur = 2.5
 directional_shadow_blend_splits = true
 
 [node name="Dummy" type="CharacterBody3D" parent="."]
