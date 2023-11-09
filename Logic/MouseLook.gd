@@ -1,6 +1,6 @@
 extends Node3D
 
-@export var mouse_sensitivity = 0.15
+@export var mouse_sensitivity = 0.07
 
 @onready var x_look = $xLook
 
@@ -18,4 +18,4 @@ func _input(event):
 	if event is InputEventMouseMotion:
 		self.rotate_y(deg_to_rad(-event.relative.x*mouse_sensitivity))
 		x_look.rotate_x(deg_to_rad(event.relative.y*mouse_sensitivity))
-		x_look.rotation.x = clamp(x_look.rotation.x, deg_to_rad(-60), deg_to_rad(90))
+		x_look.rotation.x = clamp(x_look.rotation.x, deg_to_rad(-47), deg_to_rad(70))
