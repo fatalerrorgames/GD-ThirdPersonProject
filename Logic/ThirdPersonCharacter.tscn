@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bhupojt0swb3m"]
+[gd_scene load_steps=18 format=3 uid="uid://bhupojt0swb3m"]
 
 [ext_resource type="Script" path="res://Logic/Scripts/ThirdPersonCharacter.gd" id="1_6dg0m"]
 [ext_resource type="Script" path="res://Logic/MouseLook.gd" id="1_aq7ch"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://Logic/Scripts/States/Weapons/SwordState.gd" id="6_iy2yh"]
 [ext_resource type="Script" path="res://Logic/Scripts/States/Weapons/WeaponMasterState.gd" id="7_hgcxk"]
 [ext_resource type="PackedScene" uid="uid://ceifjmyjmfhau" path="res://Assets/GD-TPP-Character-2023-11-07-16.gltf" id="10_l62rq"]
+[ext_resource type="PackedScene" uid="uid://dda03g1v0ti4f" path="res://Assets/Character/Scenes/gd_tpp_character_2023_11_14_01.tscn" id="11_yk7dp"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_svcfi"]
 radius = 0.415637
@@ -32,11 +33,12 @@ script = ExtResource("1_6dg0m")
 script = ExtResource("2_3crjg")
 initial_state = NodePath("MoveState")
 
-[node name="MoveState" type="Node" parent="StateMachine" node_paths=PackedStringArray("body", "yLook", "MeshParent")]
+[node name="MoveState" type="Node" parent="StateMachine" node_paths=PackedStringArray("body", "yLook", "MeshParent", "PlayerModel")]
 script = ExtResource("3_d3rn7")
 body = NodePath("../..")
 yLook = NodePath("../../yLook")
 MeshParent = NodePath("../../MeshParent")
+PlayerModel = NodePath("../../smoothparent/GD-TPP-Character-2023-11-14-02")
 
 [node name="CombatState" type="Node" parent="StateMachine" node_paths=PackedStringArray("body", "yLook", "MeshParent", "AttackTimer", "DodgeTimer")]
 script = ExtResource("4_bixtw")
@@ -120,12 +122,21 @@ mesh = SubResource("SphereMesh_rnbpr")
 skeleton = NodePath("../MeshInstance3D")
 surface_material_override/0 = SubResource("StandardMaterial3D_kob78")
 
-[node name="GD-TPP-Character-2023-10-16-10" parent="smoothparent" instance=ExtResource("5_dw1ik")]
+[node name="OldModels" type="Node3D" parent="smoothparent"]
+visible = false
+
+[node name="GD-TPP-Character-2023-10-16-10" parent="smoothparent/OldModels" instance=ExtResource("5_dw1ik")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 visible = false
 
-[node name="GD-TPP-Character-2023-11-07-16" parent="smoothparent" instance=ExtResource("10_l62rq")]
+[node name="GD-TPP-Character-2023-11-07-16" parent="smoothparent/OldModels" instance=ExtResource("10_l62rq")]
 transform = Transform3D(0.52, 0, 0, 0, 0.52, 0, 0, 0, 0.52, 0, 0, 0)
+visible = false
+
+[node name="GD-TPP-Character-2023-11-14-02" parent="smoothparent" node_paths=PackedStringArray("MoveRefference", "CombatRefference") instance=ExtResource("11_yk7dp")]
+transform = Transform3D(0.52, 0, 0, 0, 0.52, 0, 0, 0, 0.52, 0, 0, 0)
+MoveRefference = NodePath("../../StateMachine/MoveState")
+CombatRefference = NodePath("../../StateMachine/CombatState")
 
 [node name="yLook" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.995427, 0)

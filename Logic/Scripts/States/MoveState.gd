@@ -8,6 +8,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @export var body: CharacterBody3D
 @export var yLook: Node3D
 @export var MeshParent: Node3D
+@export var PlayerModel: Node3D
 #@export var RaycastParent: Node3D
 #@export var TestCast: Node3D
 
@@ -22,6 +23,14 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var acc_process
 var deacc_process
 var sprint_multiplier_process
+#animation variables
+var velocity_anim
+var input_velocity_anim
+var has_stopped_anim
+var has_startet_anim
+var isgrounded_anim
+var has_jumped_anim
+var has_landed_anim
 
 
 
@@ -36,7 +45,8 @@ func Update(delta: float):
 		#clamp x and z rotation
 		MeshParent.rotation.x = clamp(MeshParent.rotation.x, deg_to_rad(0), deg_to_rad(0))
 		MeshParent.rotation.z = clamp(MeshParent.rotation.z, deg_to_rad(0), deg_to_rad(0))
-
+		Animate() #execute animation logic
+		
 func Physics_Update(delta: float):
 	
 	# Add the gravity.
@@ -79,6 +89,10 @@ func Physics_Update(delta: float):
 	#transition to CombatState
 	if Input.is_action_just_pressed("attack") or Input.is_action_just_pressed("draw"):
 		Transitioned.emit(self, "CombatState")
+		
+#Animation Logic (setting variables etc)
+func Animate():
+	velocity_anim = clamp(body.velocity.length() / SPEED, 0,1)
 
 
 

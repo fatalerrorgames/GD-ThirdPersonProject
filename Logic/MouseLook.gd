@@ -1,6 +1,6 @@
 extends Node3D
 
-@export var mouse_sensitivity = 0.07
+@export var mouse_sensitivity = 0.15
 
 @onready var x_look = $xLook
 
