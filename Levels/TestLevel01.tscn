@@ -1,8 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://bx22ehuuah7iv"]
+[gd_scene load_steps=20 format=3 uid="uid://bx22ehuuah7iv"]
 
 [ext_resource type="Script" path="res://Levels/QuitGame.gd" id="1_fyeas"]
 [ext_resource type="PackedScene" uid="uid://bhupojt0swb3m" path="res://Logic/ThirdPersonCharacter.tscn" id="1_is434"]
+[ext_resource type="Texture2D" uid="uid://blsgo1y10wxnd" path="res://Assets/Textures/patterned_brick_floor_diff_2k.jpg" id="2_dyqh0"]
 [ext_resource type="Material" uid="uid://diywov2vlsyt7" path="res://Assets/Materials/Blue.tres" id="2_niylm"]
+[ext_resource type="Texture2D" uid="uid://x1f5ytqxdjfe" path="res://Assets/Textures/patterned_brick_floor_nor_dx_2k.png" id="3_sr1sd"]
+[ext_resource type="Texture2D" uid="uid://bqn8istttm0eq" path="res://Assets/Textures/patterned_brick_floor_rough_2k.jpg" id="4_o5bt0"]
 [ext_resource type="Material" uid="uid://b08pu4garfulv" path="res://Assets/Materials/Orange.tres" id="4_x02rg"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_51mrn"]
@@ -20,6 +23,7 @@ tonemap_mode = 2
 tonemap_exposure = 0.7
 ssao_enabled = true
 ssil_enabled = true
+sdfgi_enabled = true
 glow_enabled = true
 glow_strength = 1.44
 glow_bloom = 0.02
@@ -44,6 +48,13 @@ dof_blur_near_distance = 1.57
 dof_blur_near_transition = 3.0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_5p4vy"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5dq8g"]
+albedo_texture = ExtResource("2_dyqh0")
+roughness_texture = ExtResource("4_o5bt0")
+normal_enabled = true
+normal_texture = ExtResource("3_sr1sd")
+uv1_scale = Vector3(40, 40, 40)
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_2jbsl"]
 data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
@@ -70,6 +81,7 @@ camera_attributes = SubResource("CameraAttributesPractical_idifn")
 [node name="GroundPlane" type="MeshInstance3D" parent="."]
 transform = Transform3D(80, 0, 0, 0, 80, 0, 0, 0, 80, 0, 0, 0)
 mesh = SubResource("PlaneMesh_5p4vy")
+surface_material_override/0 = SubResource("StandardMaterial3D_5dq8g")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="GroundPlane"]
 

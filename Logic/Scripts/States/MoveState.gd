@@ -25,6 +25,7 @@ var deacc_process
 var sprint_multiplier_process
 #animation variables
 var velocity_anim
+var sprint_anim
 var input_velocity_anim
 var has_stopped_anim
 var has_startet_anim
@@ -72,6 +73,7 @@ func Physics_Update(delta: float):
 	var input_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	var direction = (yLook.transform.basis * Vector3(-input_dir.x, 0, -input_dir.y)).normalized()
 	
+	input_velocity_anim = direction
 	#orient climb raycasts along input direction
 	#if RaycastParent.global_transform.origin != RaycastParent.global_transform.origin + -direction:
 	#	RaycastParent.look_at_from_position(RaycastParent.global_transform.origin, RaycastParent.global_transform.origin + -direction)
@@ -93,6 +95,10 @@ func Physics_Update(delta: float):
 #Animation Logic (setting variables etc)
 func Animate():
 	velocity_anim = clamp(body.velocity.length() / SPEED, 0,1)
-
+	sprint_anim = (body.velocity.length() * 0.5) - velocity_anim*2
+	
+	if input_velocity_anim < body.velocity:
+		has_stopped_anim = true
+	
 
 
