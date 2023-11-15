@@ -53,6 +53,7 @@ dof_blur_near_transition = 3.0
 albedo_texture = ExtResource("2_dyqh0")
 roughness_texture = ExtResource("4_o5bt0")
 normal_enabled = true
+normal_scale = 3.0
 normal_texture = ExtResource("3_sr1sd")
 uv1_scale = Vector3(40, 40, 40)
 

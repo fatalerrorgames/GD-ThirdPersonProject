@@ -29,7 +29,7 @@ var sprint_anim
 var input_velocity_anim
 var has_stopped_anim
 var has_startet_anim
-var isgrounded_anim
+var isgrounded_anim = 0.0
 var has_jumped_anim
 var has_landed_anim
 
@@ -60,8 +60,21 @@ func Physics_Update(delta: float):
 		deacc_process = DEACCELERATION
 
 	# Handle Jump.
+		
 	if Input.is_action_just_pressed("jump") and body.is_on_floor():
 		body.velocity.y = JUMP_VELOCITY
+		has_jumped_anim = true
+	else:
+		has_jumped_anim = false
+		
+	
+	if body.is_on_floor():
+		isgrounded_anim = lerp(isgrounded_anim, 0.0, 0.5)
+		has_landed_anim = true
+	else:
+		isgrounded_anim = lerp(isgrounded_anim, 1.0, 0.05)
+		has_landed_anim = false
+	
 	
 	#sprint	
 	if Input.is_action_pressed("sprint") and body.is_on_floor():
