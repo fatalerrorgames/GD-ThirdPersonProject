@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bx22ehuuah7iv"]
+[gd_scene load_steps=23 format=3 uid="uid://bx22ehuuah7iv"]
 
 [ext_resource type="Script" path="res://Levels/QuitGame.gd" id="1_fyeas"]
 [ext_resource type="PackedScene" uid="uid://bhupojt0swb3m" path="res://Logic/ThirdPersonCharacter.tscn" id="1_is434"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://x1f5ytqxdjfe" path="res://Assets/Textures/patterned_brick_floor_nor_dx_2k.png" id="3_sr1sd"]
 [ext_resource type="Texture2D" uid="uid://bqn8istttm0eq" path="res://Assets/Textures/patterned_brick_floor_rough_2k.jpg" id="4_o5bt0"]
 [ext_resource type="Material" uid="uid://b08pu4garfulv" path="res://Assets/Materials/Orange.tres" id="4_x02rg"]
+[ext_resource type="Script" path="res://Logic/SmoothCam.gd" id="8_8luyf"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_51mrn"]
 
@@ -71,6 +72,11 @@ radius = 0.414192
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_k7c6j"]
 size = Vector3(0.581065, 2.01061, 0.587412)
+
+[sub_resource type="SphereMesh" id="SphereMesh_xfitx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v48v8"]
+albedo_color = Color(1, 0, 1, 1)
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_fyeas")
@@ -174,6 +180,8 @@ directional_shadow_blend_splits = true
 
 [node name="Dummy" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.73637)
+collision_layer = 16
+collision_mask = 17
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Dummy"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -181,6 +189,7 @@ shape = SubResource("CapsuleShape3D_0cgl8")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Dummy"]
 transform = Transform3D(0.5, 0, 0, 0, 1.9, 0, 0, 0, 0.5, 0, 0.958192, 0)
+gi_mode = 2
 mesh = SubResource("BoxMesh_0f2r3")
 surface_material_override/0 = ExtResource("4_x02rg")
 
@@ -189,3 +198,23 @@ surface_material_override/0 = ExtResource("4_x02rg")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Dummy/HitBox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("BoxShape3D_k7c6j")
+
+[node name="SmoothCam" type="Node3D" parent="." node_paths=PackedStringArray("Target")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("8_8luyf")
+Target = NodePath("../CharacterBody3D")
+TargetingSpeed = 0.12
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SmoothCam"]
+transform = Transform3D(0.28, 0, 0, 0, 0.28, 0, 0, 0, 0.28, 0, 0, 0)
+visible = false
+mesh = SubResource("SphereMesh_xfitx")
+surface_material_override/0 = SubResource("StandardMaterial3D_v48v8")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="SmoothCam"]
+transform = Transform3D(1, 0, 0, 0, 0.945518, -0.325568, 0, 0.325568, 0.945518, 0, 0, 0)
+spring_length = -4.0
+
+[node name="Camera3D" type="Camera3D" parent="SmoothCam/SpringArm3D"]
+transform = Transform3D(-1, -2.84621e-08, -8.26599e-08, 0, 0.945519, -0.325568, 8.74228e-08, -0.325568, -0.945519, 0, 0, -4)
+current = true
