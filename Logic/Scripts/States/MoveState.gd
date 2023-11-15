@@ -13,7 +13,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 #@export var TestCast: Node3D
 
 # Variables for Movement
-@export var SPEED = 4.0
+@export var SPEED = 3.5
 @export var SPRINT_MULTIPLIER = 1.8
 @export var JUMP_VELOCITY = 5.5
 @export var ACCELERATION = 0.1
@@ -23,6 +23,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var acc_process
 var deacc_process
 var sprint_multiplier_process
+var b_velocity_process
 #animation variables
 var velocity_anim
 var sprint_anim
@@ -60,22 +61,22 @@ func Physics_Update(delta: float):
 		deacc_process = DEACCELERATION
 
 	# Handle Jump.
-		
 	if Input.is_action_just_pressed("jump") and body.is_on_floor():
 		body.velocity.y = JUMP_VELOCITY
 		has_jumped_anim = true
+
 	else:
 		has_jumped_anim = false
 		
 	
+	#transition to fall
 	if body.is_on_floor():
-		isgrounded_anim = lerp(isgrounded_anim, 0.0, 0.5)
+		isgrounded_anim = lerp(isgrounded_anim, 0.0, 0.12)
 		has_landed_anim = true
 	else:
-		isgrounded_anim = lerp(isgrounded_anim, 1.0, 0.05)
-		has_landed_anim = false
-	
-	
+		isgrounded_anim = lerp(isgrounded_anim, 1.0, 0.2)
+
+
 	#sprint	
 	if Input.is_action_pressed("sprint") and body.is_on_floor():
 		sprint_multiplier_process = SPRINT_MULTIPLIER
@@ -107,8 +108,10 @@ func Physics_Update(delta: float):
 		
 #Animation Logic (setting variables etc)
 func Animate():
-	velocity_anim = clamp(body.velocity.length() / SPEED, 0,1)
-	sprint_anim = (body.velocity.length() * 0.5) - velocity_anim*2
+	b_velocity_process = body.velocity * Vector3(1,0,1)
+	#velocity_anim = clamp(body.velocity.length() / SPEED, 0,1)
+	velocity_anim = clamp(b_velocity_process.length() / SPEED, 0,1)
+	sprint_anim = (b_velocity_process.length() * 0.5) - velocity_anim*2
 	
 	if input_velocity_anim < body.velocity:
 		has_stopped_anim = true

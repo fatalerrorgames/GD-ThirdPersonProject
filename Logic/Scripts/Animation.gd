@@ -28,6 +28,10 @@ func _process(delta):
 	if MoveRefference.has_jumped_anim == true:
 		#play jump animation
 		Animations.set("parameters/OneShotJump/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+		Animations.set("parameters/OneShotLand/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
 	
-	#if MoveRefference.has_landed_anim == true:
-	#	Animations.set("parameters/OneShotLand/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+		
+
+
+func _on_area_3d_body_entered(body):
+	Animations.set("parameters/OneShotLand/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)

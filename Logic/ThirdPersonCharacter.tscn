@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bhupojt0swb3m"]
+[gd_scene load_steps=19 format=3 uid="uid://bhupojt0swb3m"]
 
 [ext_resource type="Script" path="res://Logic/Scripts/ThirdPersonCharacter.gd" id="1_6dg0m"]
 [ext_resource type="Script" path="res://Logic/MouseLook.gd" id="1_aq7ch"]
@@ -25,6 +25,9 @@ size = Vector3(1.03567, 0.24364, 1.22199)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kob78"]
 albedo_color = Color(0.168627, 0.168627, 0.168627, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_6xdm4"]
+radius = 0.340022
 
 [node name="CharacterBody3D" type="CharacterBody3D"]
 script = ExtResource("1_6dg0m")
@@ -151,5 +154,12 @@ spring_length = -4.0
 [node name="Camera3D" type="Camera3D" parent="yLook/xLook/SpringArm3D"]
 transform = Transform3D(-1, 2.84621e-08, 8.26599e-08, 0, 0.945519, -0.325568, -8.74228e-08, -0.325568, -0.945519, 0, 0, -4)
 
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.299766, 0)
+shape = SubResource("SphereShape3D_6xdm4")
+
 [connection signal="timeout" from="StateMachine/CombatState/AttackTimer" to="StateMachine/CombatState" method="_on_attack_timer_timeout"]
 [connection signal="timeout" from="StateMachine/CombatState/DodgeTimer" to="StateMachine/CombatState" method="_on_dodge_timer_timeout"]
+[connection signal="body_entered" from="Area3D" to="smoothparent/GD-TPP-Character-2023-11-14-02" method="_on_area_3d_body_entered"]
