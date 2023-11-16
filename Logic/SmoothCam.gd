@@ -9,5 +9,5 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	self.global_transform.origin = lerp(self.global_transform.origin, Target.yLookTransform, TargetingSpeed)
+	self.global_transform.origin = lerp(self.global_transform.origin, Target.yLookTransform, TargetingSpeed * (delta * 60))
 	self.global_transform.basis = Target.xLookTransform
