@@ -71,7 +71,7 @@ func Physics_Update(delta: float):
 	
 	#transition to fall
 	if body.is_on_floor():
-		isgrounded_anim = lerp(isgrounded_anim, 0.0, 0.12)
+		isgrounded_anim = lerp(isgrounded_anim, 0.0, 0.15)
 		has_landed_anim = true
 	else:
 		isgrounded_anim = lerp(isgrounded_anim, 1.0, 0.2)

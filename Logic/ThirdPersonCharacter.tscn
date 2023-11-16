@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bhupojt0swb3m"]
+[gd_scene load_steps=22 format=3 uid="uid://bhupojt0swb3m"]
 
 [ext_resource type="Script" path="res://Logic/Scripts/ThirdPersonCharacter.gd" id="1_6dg0m"]
 [ext_resource type="Script" path="res://Logic/MouseLook.gd" id="1_aq7ch"]
@@ -12,6 +12,9 @@
 [ext_resource type="Script" path="res://Logic/Scripts/States/Weapons/WeaponMasterState.gd" id="7_hgcxk"]
 [ext_resource type="PackedScene" uid="uid://ceifjmyjmfhau" path="res://Assets/GD-TPP-Character-2023-11-07-16.gltf" id="10_l62rq"]
 [ext_resource type="PackedScene" uid="uid://dda03g1v0ti4f" path="res://Assets/Character/Scenes/gd_tpp_character_2023_11_14_01.tscn" id="11_yk7dp"]
+[ext_resource type="PackedScene" uid="uid://c6doicrawad68" path="res://Assets/Character/Scenes/gd_tpp_character_2023_11_16_05.tscn" id="12_ciiqs"]
+[ext_resource type="PackedScene" uid="uid://dyoiix48ylhr3" path="res://Assets/Character/Scenes/gd_tpp_character_2023_11_16_06.tscn" id="13_ogfah"]
+[ext_resource type="Script" path="res://Logic/Scripts/Animation.gd" id="14_konks"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_svcfi"]
 radius = 0.415637
@@ -43,7 +46,7 @@ script = ExtResource("3_d3rn7")
 body = NodePath("../..")
 yLook = NodePath("../../yLook")
 MeshParent = NodePath("../../MeshParent")
-PlayerModel = NodePath("../../smoothparent/GD-TPP-Character-2023-11-14-02")
+PlayerModel = NodePath("../../smoothparent/OldModels/GD-TPP-Character-2023-11-14-02")
 
 [node name="CombatState" type="Node" parent="StateMachine" node_paths=PackedStringArray("body", "yLook", "MeshParent", "AttackTimer", "DodgeTimer")]
 script = ExtResource("4_bixtw")
@@ -138,8 +141,18 @@ visible = false
 transform = Transform3D(0.52, 0, 0, 0, 0.52, 0, 0, 0, 0.52, 0, 0, 0)
 visible = false
 
-[node name="GD-TPP-Character-2023-11-14-02" parent="smoothparent" node_paths=PackedStringArray("MoveRefference", "CombatRefference") instance=ExtResource("11_yk7dp")]
+[node name="GD-TPP-Character-2023-11-14-02" parent="smoothparent/OldModels" instance=ExtResource("11_yk7dp")]
 transform = Transform3D(0.52, 0, 0, 0, 0.52, 0, 0, 0, 0.52, 0, 0, 0)
+visible = false
+script = null
+
+[node name="GD-TPP-Character-2023-11-16-05" parent="smoothparent/OldModels" instance=ExtResource("12_ciiqs")]
+transform = Transform3D(0.52, 0, 0, 0, 0.52, 0, 0, 0, 0.52, 0, 0, 0)
+script = null
+
+[node name="GD-TPP-Character-2023-11-16-06" parent="smoothparent" node_paths=PackedStringArray("MoveRefference", "CombatRefference") instance=ExtResource("13_ogfah")]
+transform = Transform3D(0.52, 0, 0, 0, 0.52, 0, 0, 0, 0.52, 0, 0, 0)
+script = ExtResource("14_konks")
 MoveRefference = NodePath("../../StateMachine/MoveState")
 CombatRefference = NodePath("../../StateMachine/CombatState")
 
@@ -155,6 +168,7 @@ spring_length = -4.0
 
 [node name="Camera3D" type="Camera3D" parent="yLook/xLook/SpringArm3D"]
 transform = Transform3D(-1, 2.84621e-08, 8.26599e-08, 0, 0.945519, -0.325568, -8.74228e-08, -0.325568, -0.945519, 0, 0, -4)
+current = true
 
 [node name="Area3D" type="Area3D" parent="."]
 
@@ -164,4 +178,5 @@ shape = SubResource("SphereShape3D_6xdm4")
 
 [connection signal="timeout" from="StateMachine/CombatState/AttackTimer" to="StateMachine/CombatState" method="_on_attack_timer_timeout"]
 [connection signal="timeout" from="StateMachine/CombatState/DodgeTimer" to="StateMachine/CombatState" method="_on_dodge_timer_timeout"]
-[connection signal="body_entered" from="Area3D" to="smoothparent/GD-TPP-Character-2023-11-14-02" method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="Area3D" to="smoothparent/OldModels/GD-TPP-Character-2023-11-14-02" method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="Area3D" to="smoothparent/GD-TPP-Character-2023-11-16-06" method="_on_area_3d_body_entered"]
