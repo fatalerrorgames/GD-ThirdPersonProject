@@ -202,7 +202,7 @@ shape = SubResource("BoxShape3D_k7c6j")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("8_8luyf")
 Target = NodePath("../CharacterBody3D")
-TargetingSpeed = 0.12
+TargetingSpeed = 0.11
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="SmoothCam"]
 transform = Transform3D(0.28, 0, 0, 0, 0.28, 0, 0, 0, 0.28, 0, 0, 0)
