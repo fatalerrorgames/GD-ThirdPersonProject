@@ -99,18 +99,15 @@ func Physics_Update(delta: float):
 func Animate():
 	var b_vel_x
 	var b_vel_z
-	var b_y_rotation
-	#b_velocity_process = body.velocity * Vector3(1,0,1)
-	b_velocity_process = body.velocity * Vector3(1/SPEED,0,1/SPEED)
+	var b_y_rotation = 0.0
+
+	b_y_rotation = MeshParent.rotation.y #get rotation of the player mesh
+	b_velocity_process = body.velocity.rotated(Vector3.UP, - b_y_rotation) #rotate velocity around player mesh
 	
-	b_vel_x = b_velocity_process.x
-	b_vel_z = b_velocity_process.z
-	
-	b_y_rotation = body.global_transform.basis.y
-	
+	#splitting rotation and recombinig velocity into a Vector2, which can be used to blend the walking animations
+	b_vel_x = b_velocity_process.x / SPEED
+	b_vel_z = b_velocity_process.z / SPEED
 	velocity_anim = Vector2(b_vel_x,b_vel_z)
-	#velocity_anim = clamp(body.velocity.length() / SPEED, 0,1)
-	#velocity_anim = clamp(b_velocity_process.length() / SPEED, 0,1)
 
 
 #signals from attack and dodge timer
