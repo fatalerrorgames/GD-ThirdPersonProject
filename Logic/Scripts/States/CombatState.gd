@@ -8,6 +8,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @export var body: CharacterBody3D
 @export var yLook: Node3D
 @export var MeshParent: Node3D
+@export var PlayerModel: Node3D
 
 @export var AttackTimer: Timer
 @export var DodgeTimer: Timer
@@ -24,16 +25,33 @@ var deacc_process
 
 var can_attack = true
 var can_dodge = true
+var b_velocity_process
+
+#animation variables
+var velocity_anim
+var sprint_anim
+var input_velocity_anim
+var has_stopped_anim
+var has_startet_anim
+var isgrounded_anim = 0.0
+var has_jumped_anim
+var has_landed_anim
+var state_name_anim = "move"
 
 
 
 func Enter():
 	acc_process = ACCELERATION
 	deacc_process = DEACCELERATION
+	state_name_anim = "combat"
+	
+func Exit():
+	state_name_anim = "move"
 
 func Update(delta: float):
 	#orient Character along yLook
 	MeshParent.rotation.y = yLook.rotation.y
+	Animate() #execute animation logic
 	
 
 func Physics_Update(delta: float):
@@ -78,7 +96,21 @@ func Physics_Update(delta: float):
 	if Input.is_action_just_pressed("draw") and can_attack and can_dodge:
 			Transitioned.emit(self, "MoveState")
 
-
+func Animate():
+	var b_vel_x
+	var b_vel_z
+	var b_y_rotation
+	#b_velocity_process = body.velocity * Vector3(1,0,1)
+	b_velocity_process = body.velocity * Vector3(1/SPEED,0,1/SPEED)
+	
+	b_vel_x = b_velocity_process.x
+	b_vel_z = b_velocity_process.z
+	
+	b_y_rotation = body.global_transform.basis.y
+	
+	velocity_anim = Vector2(b_vel_x,b_vel_z)
+	#velocity_anim = clamp(body.velocity.length() / SPEED, 0,1)
+	#velocity_anim = clamp(b_velocity_process.length() / SPEED, 0,1)
 
 
 #signals from attack and dodge timer
