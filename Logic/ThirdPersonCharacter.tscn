@@ -42,19 +42,17 @@ script = ExtResource("1_6dg0m")
 script = ExtResource("2_3crjg")
 initial_state = NodePath("MoveState")
 
-[node name="MoveState" type="Node" parent="StateMachine" node_paths=PackedStringArray("body", "yLook", "MeshParent", "PlayerModel")]
+[node name="MoveState" type="Node" parent="StateMachine" node_paths=PackedStringArray("body", "yLook", "MeshParent")]
 script = ExtResource("3_d3rn7")
 body = NodePath("../..")
 yLook = NodePath("../../yLook")
 MeshParent = NodePath("../../MeshParent")
-PlayerModel = NodePath("../../smoothparent/GD-TPP-Character-2023-11-30-02")
 
-[node name="CombatState" type="Node" parent="StateMachine" node_paths=PackedStringArray("body", "yLook", "MeshParent", "PlayerModel", "AttackTimer", "DodgeTimer")]
+[node name="CombatState" type="Node" parent="StateMachine" node_paths=PackedStringArray("body", "yLook", "MeshParent", "AttackTimer", "DodgeTimer")]
 script = ExtResource("4_bixtw")
 body = NodePath("../..")
 yLook = NodePath("../../yLook")
 MeshParent = NodePath("../../MeshParent")
-PlayerModel = NodePath("../../smoothparent/GD-TPP-Character-2023-11-30-02")
 AttackTimer = NodePath("AttackTimer")
 DodgeTimer = NodePath("DodgeTimer")
 
