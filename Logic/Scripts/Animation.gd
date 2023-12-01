@@ -69,6 +69,10 @@ func _process(delta):
 		Animations.set("parameters/OneShotAttackLeft/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
 		Animations.set("parameters/OneShotAttackRight/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
 	
+	if Input.is_action_pressed("move_up") or Input.is_action_pressed("move_left") or Input.is_action_pressed("move_down") or Input.is_action_pressed("move_right"):
+		if CombatRefference.can_attack:
+			Animations.set("parameters/OneShotAttackRight/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FADE_OUT)
+			Animations.set("parameters/OneShotAttackLeft/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FADE_OUT)
 	#--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 func _on_area_3d_body_entered(body):
