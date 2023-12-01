@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://ds31xpdu68pth"]
+
+[ext_resource type="PackedScene" uid="uid://4dprh45pvub4" path="res://Assets/Sword.gltf" id="1_7y1dp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yfng2"]
+albedo_color = Color(0.780392, 0.611765, 0.486275, 1)
+metallic = 1.0
+roughness = 0.31
+
+[node name="Sword" instance=ExtResource("1_7y1dp")]
+
+[node name="Cube_001" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_yfng2")

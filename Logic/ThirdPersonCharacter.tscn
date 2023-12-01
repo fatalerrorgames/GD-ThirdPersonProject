@@ -60,7 +60,7 @@ DodgeTimer = NodePath("DodgeTimer")
 
 [node name="AttackTimer" type="Timer" parent="StateMachine/CombatState"]
 process_callback = 0
-wait_time = 0.25
+wait_time = 0.4
 one_shot = true
 
 [node name="DodgeTimer" type="Timer" parent="StateMachine/CombatState"]

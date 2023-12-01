@@ -34,8 +34,10 @@ var input_velocity_anim
 var has_stopped_anim
 var has_startet_anim
 var isgrounded_anim = 0.0
-var has_jumped_anim
+var has_dodged_anim
 var has_landed_anim
+var has_attacked_anim
+var has_drawn_anim
 var state_name_anim = "move"
 
 
@@ -44,15 +46,16 @@ func Enter():
 	acc_process = ACCELERATION
 	deacc_process = DEACCELERATION
 	state_name_anim = "combat"
-	
+	has_drawn_anim = true
+
 func Exit():
-	state_name_anim = "move"
+	has_drawn_anim = false
 
 func Update(delta: float):
 	#orient Character along yLook
 	MeshParent.rotation.y = yLook.rotation.y
 	Animate() #execute animation logic
-	
+
 
 func Physics_Update(delta: float):
 
@@ -60,6 +63,10 @@ func Physics_Update(delta: float):
 		body.velocity = (yLook.transform.basis * Vector3(0, 0, 7))
 		AttackTimer.start()#starts the attack timer
 		can_attack = false
+		has_attacked_anim = true
+	else:
+		has_attacked_anim = false
+
 	# Add the gravity.
 	if not body.is_on_floor():
 		body.velocity.y -= gravity * delta
@@ -77,29 +84,40 @@ func Physics_Update(delta: float):
 	var input_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	var direction = (yLook.transform.basis * Vector3(-input_dir.x, 0, -input_dir.y)).normalized()
 
-	if direction:
+	if direction and can_attack:
 		body.velocity.x = lerp(body.velocity.x , direction.x * SPEED, acc_process)
 		body.velocity.z = lerp(body.velocity.z, direction.z * SPEED, acc_process)
-		
+
 		# DODGE gets called only if direction true, otherwise we can infinitely accelerate by repeatetely dodging
 		if Input.is_action_just_pressed("jump") and body.is_on_floor() and can_dodge:
 			body.velocity = Vector3(body.velocity.x * 4, JUMP_VELOCITY, body.velocity.z * 4)
 			DodgeTimer.start()#starts the attack timer
 			can_dodge = false
-		
-	
+			has_dodged_anim = true
+		else:
+			has_dodged_anim = false
+
 	else:
 		body.velocity.x = lerp(body.velocity.x , direction.x * SPEED, deacc_process)
 		body.velocity.z = lerp(body.velocity.z, direction.z * SPEED, deacc_process)
-	
+
+	#transition to fall
+	if body.is_on_floor():
+		isgrounded_anim = lerp(isgrounded_anim, 0.0, 0.05)
+	else:
+		isgrounded_anim = lerp(isgrounded_anim, 1.0, 0.2)
+
 	#transition to movestate
 	if Input.is_action_just_pressed("draw") and can_attack and can_dodge:
+			state_name_anim = "move"
 			Transitioned.emit(self, "MoveState")
 
 func Animate():
 	var b_vel_x
 	var b_vel_z
 	var b_y_rotation = 0.0
+	
+	#can_attack_anim = can_attack
 
 	b_y_rotation = MeshParent.rotation.y #get rotation of the player mesh
 	b_velocity_process = body.velocity.rotated(Vector3.UP, - b_y_rotation) #rotate velocity around player mesh
