@@ -150,7 +150,7 @@ fadeout_time = 0.1
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_knlrw"]
 filter_enabled = true
-filters = ["BoneAttachment3D2:visible", "BoneAttachment3D:visible", "metarig/BoneAttachment3D2:visible", "metarig/BoneAttachment3D:visible", "metarig/Skeleton3D:Bone", "metarig/Skeleton3D:Bone.001", "metarig/Skeleton3D:Bone.002", "metarig/Skeleton3D:breast.L", "metarig/Skeleton3D:breast.R", "metarig/Skeleton3D:eye.L", "metarig/Skeleton3D:eye.R", "metarig/Skeleton3D:eyelid.L", "metarig/Skeleton3D:eyelid.R", "metarig/Skeleton3D:forearm.L", "metarig/Skeleton3D:forearm.R", "metarig/Skeleton3D:hand.L", "metarig/Skeleton3D:hand.L.001", "metarig/Skeleton3D:hand.L.002", "metarig/Skeleton3D:hand.L.003", "metarig/Skeleton3D:hand.L.005", "metarig/Skeleton3D:hand.L.006", "metarig/Skeleton3D:hand.L.007", "metarig/Skeleton3D:hand.L.008", "metarig/Skeleton3D:hand.L.009", "metarig/Skeleton3D:hand.L.010", "metarig/Skeleton3D:hand.R", "metarig/Skeleton3D:hand.R.001", "metarig/Skeleton3D:hand.R.002", "metarig/Skeleton3D:hand.R.003", "metarig/Skeleton3D:hand.R.005", "metarig/Skeleton3D:hand.R.006", "metarig/Skeleton3D:hand.R.007", "metarig/Skeleton3D:hand.R.008", "metarig/Skeleton3D:hand.R.009", "metarig/Skeleton3D:hand.R.010", "metarig/Skeleton3D:jaw", "metarig/Skeleton3D:mouth.L", "metarig/Skeleton3D:mouth.R", "metarig/Skeleton3D:mouth.upper", "metarig/Skeleton3D:shoulder.L", "metarig/Skeleton3D:shoulder.R", "metarig/Skeleton3D:spine.001", "metarig/Skeleton3D:spine.002", "metarig/Skeleton3D:spine.003", "metarig/Skeleton3D:spine.004", "metarig/Skeleton3D:spine.005", "metarig/Skeleton3D:spine.006", "metarig/Skeleton3D:upper_arm.L", "metarig/Skeleton3D:upper_arm.R"]
+filters = ["BoneAttachment3D2:visible", "BoneAttachment3D:visible", "metarig/BoneAttachment3D/Sword/Area3DSword/CollisionShape3DSword:disabled", "metarig/BoneAttachment3D/Sword/Area3DSword:monitorable", "metarig/BoneAttachment3D/Sword/Area3DSword:monitoring", "metarig/BoneAttachment3D2:visible", "metarig/BoneAttachment3D:visible", "metarig/Skeleton3D:Bone", "metarig/Skeleton3D:Bone.001", "metarig/Skeleton3D:Bone.002", "metarig/Skeleton3D:breast.L", "metarig/Skeleton3D:breast.R", "metarig/Skeleton3D:eye.L", "metarig/Skeleton3D:eye.R", "metarig/Skeleton3D:eyelid.L", "metarig/Skeleton3D:eyelid.R", "metarig/Skeleton3D:forearm.L", "metarig/Skeleton3D:forearm.R", "metarig/Skeleton3D:hand.L", "metarig/Skeleton3D:hand.L.001", "metarig/Skeleton3D:hand.L.002", "metarig/Skeleton3D:hand.L.003", "metarig/Skeleton3D:hand.L.005", "metarig/Skeleton3D:hand.L.006", "metarig/Skeleton3D:hand.L.007", "metarig/Skeleton3D:hand.L.008", "metarig/Skeleton3D:hand.L.009", "metarig/Skeleton3D:hand.L.010", "metarig/Skeleton3D:hand.R", "metarig/Skeleton3D:hand.R.001", "metarig/Skeleton3D:hand.R.002", "metarig/Skeleton3D:hand.R.003", "metarig/Skeleton3D:hand.R.005", "metarig/Skeleton3D:hand.R.006", "metarig/Skeleton3D:hand.R.007", "metarig/Skeleton3D:hand.R.008", "metarig/Skeleton3D:hand.R.009", "metarig/Skeleton3D:hand.R.010", "metarig/Skeleton3D:jaw", "metarig/Skeleton3D:mouth.L", "metarig/Skeleton3D:mouth.R", "metarig/Skeleton3D:mouth.upper", "metarig/Skeleton3D:shoulder.L", "metarig/Skeleton3D:shoulder.R", "metarig/Skeleton3D:spine.001", "metarig/Skeleton3D:spine.002", "metarig/Skeleton3D:spine.003", "metarig/Skeleton3D:spine.004", "metarig/Skeleton3D:spine.005", "metarig/Skeleton3D:spine.006", "metarig/Skeleton3D:upper_arm.L", "metarig/Skeleton3D:upper_arm.R"]
 fadein_time = 0.1
 fadeout_time = 0.2
 
@@ -166,7 +166,7 @@ fadeout_curve = SubResource("Curve_hhqlq")
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_doqnh"]
 filter_enabled = true
-filters = ["BoneAttachment3D2:visible", "BoneAttachment3D:visible", "metarig/BoneAttachment3D2:visible", "metarig/BoneAttachment3D:visible", "metarig/Skeleton3D:Bone", "metarig/Skeleton3D:Bone.001", "metarig/Skeleton3D:Bone.002", "metarig/Skeleton3D:breast.L", "metarig/Skeleton3D:breast.R", "metarig/Skeleton3D:eye.L", "metarig/Skeleton3D:eye.R", "metarig/Skeleton3D:eyelid.L", "metarig/Skeleton3D:eyelid.R", "metarig/Skeleton3D:forearm.L", "metarig/Skeleton3D:forearm.R", "metarig/Skeleton3D:hand.L", "metarig/Skeleton3D:hand.L.001", "metarig/Skeleton3D:hand.L.002", "metarig/Skeleton3D:hand.L.003", "metarig/Skeleton3D:hand.L.005", "metarig/Skeleton3D:hand.L.006", "metarig/Skeleton3D:hand.L.007", "metarig/Skeleton3D:hand.L.008", "metarig/Skeleton3D:hand.L.009", "metarig/Skeleton3D:hand.L.010", "metarig/Skeleton3D:hand.R", "metarig/Skeleton3D:hand.R.001", "metarig/Skeleton3D:hand.R.002", "metarig/Skeleton3D:hand.R.003", "metarig/Skeleton3D:hand.R.005", "metarig/Skeleton3D:hand.R.006", "metarig/Skeleton3D:hand.R.007", "metarig/Skeleton3D:hand.R.008", "metarig/Skeleton3D:hand.R.009", "metarig/Skeleton3D:hand.R.010", "metarig/Skeleton3D:jaw", "metarig/Skeleton3D:mouth.L", "metarig/Skeleton3D:mouth.R", "metarig/Skeleton3D:mouth.upper", "metarig/Skeleton3D:shoulder.L", "metarig/Skeleton3D:shoulder.R", "metarig/Skeleton3D:spine.001", "metarig/Skeleton3D:spine.002", "metarig/Skeleton3D:spine.003", "metarig/Skeleton3D:spine.004", "metarig/Skeleton3D:spine.005", "metarig/Skeleton3D:spine.006", "metarig/Skeleton3D:upper_arm.L", "metarig/Skeleton3D:upper_arm.R"]
+filters = ["BoneAttachment3D2:visible", "BoneAttachment3D:visible", "metarig/BoneAttachment3D/Sword/Area3DSword/CollisionShape3DSword:disabled", "metarig/BoneAttachment3D/Sword/Area3DSword:monitorable", "metarig/BoneAttachment3D/Sword/Area3DSword:monitoring", "metarig/BoneAttachment3D2:visible", "metarig/BoneAttachment3D:visible", "metarig/Skeleton3D:Bone", "metarig/Skeleton3D:Bone.001", "metarig/Skeleton3D:Bone.002", "metarig/Skeleton3D:breast.L", "metarig/Skeleton3D:breast.R", "metarig/Skeleton3D:eye.L", "metarig/Skeleton3D:eye.R", "metarig/Skeleton3D:eyelid.L", "metarig/Skeleton3D:eyelid.R", "metarig/Skeleton3D:forearm.L", "metarig/Skeleton3D:forearm.R", "metarig/Skeleton3D:hand.L", "metarig/Skeleton3D:hand.L.001", "metarig/Skeleton3D:hand.L.002", "metarig/Skeleton3D:hand.L.003", "metarig/Skeleton3D:hand.L.005", "metarig/Skeleton3D:hand.L.006", "metarig/Skeleton3D:hand.L.007", "metarig/Skeleton3D:hand.L.008", "metarig/Skeleton3D:hand.L.009", "metarig/Skeleton3D:hand.L.010", "metarig/Skeleton3D:hand.R", "metarig/Skeleton3D:hand.R.001", "metarig/Skeleton3D:hand.R.002", "metarig/Skeleton3D:hand.R.003", "metarig/Skeleton3D:hand.R.005", "metarig/Skeleton3D:hand.R.006", "metarig/Skeleton3D:hand.R.007", "metarig/Skeleton3D:hand.R.008", "metarig/Skeleton3D:hand.R.009", "metarig/Skeleton3D:hand.R.010", "metarig/Skeleton3D:jaw", "metarig/Skeleton3D:mouth.L", "metarig/Skeleton3D:mouth.R", "metarig/Skeleton3D:mouth.upper", "metarig/Skeleton3D:shoulder.L", "metarig/Skeleton3D:shoulder.R", "metarig/Skeleton3D:spine.001", "metarig/Skeleton3D:spine.002", "metarig/Skeleton3D:spine.003", "metarig/Skeleton3D:spine.004", "metarig/Skeleton3D:spine.005", "metarig/Skeleton3D:spine.006", "metarig/Skeleton3D:upper_arm.L", "metarig/Skeleton3D:upper_arm.R"]
 fadein_time = 0.1
 fadeout_time = 0.2
 
@@ -210,7 +210,7 @@ input_1/auto_advance = false
 input_1/reset = true
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_pguye"]
-graph_offset = Vector2(340.279, -493.06)
+graph_offset = Vector2(1589.25, -380.828)
 "nodes/Animation 3/node" = SubResource("AnimationNodeAnimation_i4plr")
 "nodes/Animation 3/position" = Vector2(832, -176)
 "nodes/Animation 4/node" = SubResource("AnimationNodeAnimation_otvpu")
@@ -282,34 +282,34 @@ node_connections = [&"output", 0, &"OneShotSheathe", &"BlendCombatFall", 0, &"Bl
 script = ExtResource("2_3vcw1")
 
 [node name="Skeleton3D" parent="metarig" index="0"]
-bones/0/position = Vector3(0.0206496, 1.74553, -0.0852118)
-bones/0/rotation = Quaternion(0.151626, -0.00113486, -0.028644, 0.988022)
-bones/1/rotation = Quaternion(-0.0434011, 0.000227326, 0.000841292, 0.999057)
-bones/2/rotation = Quaternion(-0.0675012, -0.00119474, -0.000828532, 0.997718)
-bones/3/rotation = Quaternion(-0.0307415, 0.00314336, 0.0292178, 0.999095)
-bones/4/rotation = Quaternion(0.223569, 0.179321, -0.0684955, 0.955599)
+bones/0/position = Vector3(0.0117831, 1.75521, -0.0830536)
+bones/0/rotation = Quaternion(0.122459, -0.0591771, 0.00407863, 0.990699)
+bones/1/rotation = Quaternion(-0.0433035, 0.00092125, 0.00341074, 0.999056)
+bones/2/rotation = Quaternion(-0.067959, -0.0010302, -0.00078981, 0.997687)
+bones/3/rotation = Quaternion(-0.00784762, 0.0024013, 0.0257024, 0.999636)
+bones/4/rotation = Quaternion(0.196537, 0.160799, -0.0604264, 0.965332)
 bones/5/rotation = Quaternion(-0.0638063, 2.84243e-14, -1.52126e-08, 0.997962)
-bones/6/rotation = Quaternion(-0.132293, 0.000737458, 0.00141172, 0.991209)
+bones/6/rotation = Quaternion(-0.0934175, -0.0586479, 0.0107477, 0.99384)
 bones/7/rotation = Quaternion(-0.520604, 1.01781e-07, 6.20609e-08, 0.853798)
-bones/8/rotation = Quaternion(0.912234, 0.0202435, 0.0155821, -0.408873)
-bones/9/rotation = Quaternion(0.238962, 0.00728384, 0.100558, 0.965781)
-bones/10/rotation = Quaternion(0.871535, 1.36542e-09, -2.10965e-07, 0.490333)
-bones/11/rotation = Quaternion(0.677017, -0.0103341, 0.00279888, 0.73589)
-bones/12/rotation = Quaternion(0.677015, -0.0101399, 0.0029781, 0.735893)
-bones/13/position = Vector3(-5.13468e-05, 0.00209697, 0.216857)
+bones/8/rotation = Quaternion(0.90088, -0.00121861, -0.000682447, -0.434066)
+bones/9/rotation = Quaternion(0.114951, 0.014144, 0.030333, 0.992807)
+bones/10/rotation = Quaternion(0.871191, -0.000221349, -0.000107598, 0.490945)
+bones/11/rotation = Quaternion(0.697347, -0.020445, 0.02438, 0.716027)
+bones/12/rotation = Quaternion(0.697355, -0.0202148, 0.0245132, 0.716021)
+bones/13/position = Vector3(-0.000208348, 0.00294348, 0.216689)
 bones/13/rotation = Quaternion(0.706162, -3.03063e-12, -1.68365e-07, 0.708051)
-bones/14/position = Vector3(0.0540128, -0.0169796, 0.149796)
+bones/14/position = Vector3(0.0532559, -0.0169801, 0.150415)
 bones/14/rotation = Quaternion(0.660717, 0.235609, -0.239381, 0.671296)
-bones/15/position = Vector3(-0.0524549, -0.0116216, 0.150984)
+bones/15/position = Vector3(-0.0534979, -0.01727, 0.150222)
 bones/15/rotation = Quaternion(0.660717, -0.235608, 0.239381, 0.671296)
 bones/16/position = Vector3(0.0847985, 0.154315, 0.179487)
-bones/16/rotation = Quaternion(0.704669, -9.37511e-05, -9.32522e-05, 0.709536)
-bones/17/position = Vector3(-0.0847985, 0.154315, 0.179487)
-bones/17/rotation = Quaternion(0.704669, 9.38908e-05, 9.31183e-05, 0.709536)
+bones/16/rotation = Quaternion(0.704669, -9.37552e-05, -9.32516e-05, 0.709536)
+bones/17/position = Vector3(-0.0847984, 0.154315, 0.179487)
+bones/17/rotation = Quaternion(0.704669, 9.38902e-05, 9.31168e-05, 0.709536)
 bones/18/rotation = Quaternion(-0.549873, -0.350093, -0.351973, 0.671707)
-bones/19/rotation = Quaternion(-0.342728, 0.601136, -0.614361, 0.379123)
-bones/20/rotation = Quaternion(0.156456, 0.0178432, -0.0100452, 0.987473)
-bones/21/rotation = Quaternion(0.130058, -0.000168762, -0.037685, 0.99079)
+bones/19/rotation = Quaternion(-0.345754, 0.615786, -0.600228, 0.375484)
+bones/20/rotation = Quaternion(0.164077, 0.0158194, -0.0117099, 0.986251)
+bones/21/rotation = Quaternion(0.068416, -0.0343329, -0.0924278, 0.992773)
 bones/23/rotation = Quaternion(0.0147155, 0.0138336, -0.303421, 0.952643)
 bones/24/rotation = Quaternion(0.00130685, 0.00070241, -0.266511, 0.963831)
 bones/25/rotation = Quaternion(-0.150506, 0.291117, 0.024874, 0.944447)
@@ -317,9 +317,9 @@ bones/26/rotation = Quaternion(0.0724872, -0.0515393, -0.218358, 0.971807)
 bones/28/rotation = Quaternion(0.145788, -0.111468, -0.204069, 0.961601)
 bones/29/rotation = Quaternion(-0.101861, -0.090601, -0.0224759, 0.990409)
 bones/31/rotation = Quaternion(-0.549873, 0.350093, 0.351972, 0.671707)
-bones/32/rotation = Quaternion(-0.300446, -0.631937, 0.567853, 0.43351)
-bones/33/rotation = Quaternion(0.167103, -0.0147174, 0.0926922, 0.981462)
-bones/34/rotation = Quaternion(-0.0100667, 0.0449574, 0.120218, 0.991678)
+bones/32/rotation = Quaternion(-0.296127, -0.629334, 0.568208, 0.439757)
+bones/33/rotation = Quaternion(0.128352, -0.0155456, 0.0762216, 0.988673)
+bones/34/rotation = Quaternion(0.100167, 0.0365189, 0.0941366, 0.989834)
 bones/36/rotation = Quaternion(-0.00285836, -0.00689389, 0.0528975, 0.998572)
 bones/38/rotation = Quaternion(-0.150506, -0.291117, -0.024874, 0.944447)
 bones/39/rotation = Quaternion(0.0912994, 0.109492, 0.323203, 0.93553)
@@ -330,19 +330,19 @@ bones/44/rotation = Quaternion(-1.21171e-07, 0.670141, 0.742234, 5.05942e-08)
 bones/45/rotation = Quaternion(-3.26895e-08, 0.670141, 0.742234, 1.30481e-07)
 bones/46/rotation = Quaternion(-0.149163, -0.789687, -0.297445, 0.515434)
 bones/47/rotation = Quaternion(-0.149163, 0.789687, 0.297445, 0.515434)
-bones/48/rotation = Quaternion(0.93615, 0.116523, -0.102325, 0.315557)
-bones/49/rotation = Quaternion(0.324727, 0.00681467, 0.0331624, 0.945202)
-bones/50/rotation = Quaternion(-0.547242, 0.0445909, 0.0169552, 0.835614)
+bones/48/rotation = Quaternion(0.948989, 0.0941799, -0.16726, 0.250148)
+bones/49/rotation = Quaternion(0.279385, 0.00691942, 0.0285319, 0.95973)
+bones/50/rotation = Quaternion(-0.532267, 0.0455043, 0.0263784, 0.844941)
 bones/51/rotation = Quaternion(0.648107, 0.67223, -0.248606, 0.257407)
-bones/53/rotation = Quaternion(0.94293, -0.0365162, 0.160097, 0.289686)
-bones/54/rotation = Quaternion(0.297632, -0.00687935, -0.0303954, 0.954172)
-bones/55/rotation = Quaternion(-0.541306, -0.0817726, 0.00831896, 0.836799)
+bones/53/rotation = Quaternion(0.922813, -0.0520468, 0.294126, 0.243304)
+bones/54/rotation = Quaternion(0.302288, -0.0068687, -0.0308709, 0.952692)
+bones/55/rotation = Quaternion(-0.543381, -0.033382, -0.00382495, 0.838814)
 bones/56/rotation = Quaternion(-0.648107, 0.67223, -0.248606, -0.257407)
-bones/58/position = Vector3(-0.37839, -0.00801215, 0.149998)
-bones/58/rotation = Quaternion(-0.701945, -0.0826568, -0.08254, 0.702587)
-bones/59/rotation = Quaternion(0.998844, -1.2453e-09, 3.05549e-08, 0.0480733)
+bones/58/position = Vector3(-0.390509, -0.00825026, 0.0250549)
+bones/58/rotation = Quaternion(-0.66839, -0.229682, -0.229621, 0.66916)
+bones/59/rotation = Quaternion(0.998808, -9.53645e-09, 3.01573e-08, 0.0488105)
 bones/60/rotation = Quaternion(-4.60233e-08, 0.997185, 0.0749838, -5.5078e-07)
-bones/62/rotation = Quaternion(0.0468873, -0.00945723, 0.197488, 0.979138)
+bones/62/rotation = Quaternion(0.190312, -0.147513, 0.539586, 0.806764)
 bones/65/position = Vector3(0.452282, -0.00850506, 0.168387)
 bones/65/rotation = Quaternion(-0.706125, 0.0372445, 0.0372445, 0.706125)
 bones/67/rotation = Quaternion(4.60233e-08, 0.997185, 0.0749838, 5.5078e-07)
@@ -353,7 +353,7 @@ surface_material_override/1 = ExtResource("4_3t32a")
 surface_material_override/2 = ExtResource("5_1b41w")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="metarig" index="1"]
-transform = Transform3D(-0.989779, 0.136047, -0.0427631, -0.141075, -0.977943, 0.154031, -0.0208644, 0.158489, 0.98714, -0.529854, 1.52913, 0.0998258)
+transform = Transform3D(-0.986696, 0.0454976, -0.156079, -0.0940155, -0.942917, 0.31948, -0.132634, 0.329904, 0.93465, -0.579278, 1.51629, -0.0400548)
 visible = false
 bone_name = "hand.R"
 bone_idx = 34
@@ -364,6 +364,9 @@ external_skeleton = NodePath("../Skeleton3D")
 transform = Transform3D(-0.851727, 0.172802, -0.494676, -0.434464, -0.760652, 0.482342, -0.292926, 0.625742, 0.722941, 0.0213332, 0.179581, -0.308498)
 
 [node name="Area3DSword" type="Area3D" parent="metarig/BoneAttachment3D/Sword" index="2"]
+collision_mask = 16
+monitoring = false
+monitorable = false
 
 [node name="CollisionShape3DSword" type="CollisionShape3D" parent="metarig/BoneAttachment3D/Sword/Area3DSword" index="0"]
 transform = Transform3D(1, 0, 0, 1.49012e-08, 1, 0, 0, 0, 1, 2.38419e-07, 0.13883, 1.19888)
@@ -376,7 +379,7 @@ mesh = SubResource("BoxMesh_ex305")
 skeleton = NodePath("../../metarig/Skeleton3D")
 
 [node name="BoneAttachment3D2" type="BoneAttachment3D" parent="metarig" index="2"]
-transform = Transform3D(0.99997, -0.00130026, 0.00761439, 0.00146181, 0.999773, -0.0212531, -0.00758503, 0.0212635, 0.999745, 0.0628565, 2.47397, 0.0674935)
+transform = Transform3D(0.992023, -0.0508217, -0.115356, 0.0503358, 0.998707, -0.00712324, 0.115569, 0.00125984, 0.993299, 0.00081016, 2.49257, 0.0258491)
 bone_name = "spine.003"
 bone_idx = 3
 use_external_skeleton = true
