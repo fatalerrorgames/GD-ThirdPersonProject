@@ -21,7 +21,7 @@ func _process(delta):
 	Animations.set("parameters/TransitionCombatMove/transition_request", StateName)#transition between combat and move
 	
 	#draw and sheathe
-	if Input.is_action_just_pressed("draw") or Input.is_action_just_pressed("attack") and CombatRefference.has_drawn_anim == true and CombatRefference.can_attack and CombatRefference.can_dodge:
+	if Input.is_action_just_pressed("draw") and CombatRefference.can_attack and CombatRefference.can_dodge or Input.is_action_just_pressed("attack") and CombatRefference.has_drawn_anim == true and CombatRefference.can_attack and CombatRefference.can_dodge:
 		Animations.set("parameters/OneShotDraw/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 		AttackLR = true
 	if Input.is_action_just_pressed("draw") and CombatRefference.has_drawn_anim == false and CombatRefference.can_attack and CombatRefference.can_dodge:
@@ -51,7 +51,18 @@ func _process(delta):
 	Animations.set("parameters/BlendSpace2DMove/blend_position", CombatRefference.velocity_anim)#blend between idle and the different directions
 	Animations.set("parameters/BlendSpace2DDodge/blend_position", CombatRefference.velocity_anim)#blend between the different dodge directions
 	Animations.set("parameters/BlendCombatFall/blend_amount", CombatRefference.isgrounded_anim)# blend to falling
-	
+
+	#fix blending for left + up
+	if Input.is_action_pressed("move_up") and Input.is_action_pressed("move_left"):
+		Animations.set("parameters/BlendSpace2DMove/3/blend_position", 1)
+	else:
+		Animations.set("parameters/BlendSpace2DMove/3/blend_position", 0)
+	#fix blending for down + right
+	if Input.is_action_pressed("move_down") and Input.is_action_pressed("move_right"):
+		Animations.set("parameters/BlendSpace2DMove/4/blend_position", 1)
+	else:
+		Animations.set("parameters/BlendSpace2DMove/4/blend_position", 0)
+
 	#switching between diferent attack animations
 	if CombatRefference.has_attacked_anim == true:
 		if AttackLR == true:
