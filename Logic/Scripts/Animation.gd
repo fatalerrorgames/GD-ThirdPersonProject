@@ -20,15 +20,17 @@ func _process(delta):
 
 	Animations.set("parameters/TransitionCombatMove/transition_request", StateName)#transition between combat and move
 	
+	#draw and sheathe
 	if Input.is_action_just_pressed("draw") or Input.is_action_just_pressed("attack") and CombatRefference.has_drawn_anim == true and CombatRefference.can_attack and CombatRefference.can_dodge:
 		Animations.set("parameters/OneShotDraw/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+		AttackLR = true
 	if Input.is_action_just_pressed("draw") and CombatRefference.has_drawn_anim == false and CombatRefference.can_attack and CombatRefference.can_dodge:
 		Animations.set("parameters/OneShotSheathe/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 
 		
 	#Move State ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	Animations.set("parameters/BlendIdleRun/blend_amount", MoveRefference.velocity_anim)
-	Animations.set("parameters/BlendSpaceRunSprint/blend_position", MoveRefference.sprint_anim)
+	Animations.set("parameters/BlendIdleRun/blend_amount", MoveRefference.velocity_anim)#blend between Idle and run
+	Animations.set("parameters/BlendSpaceRunSprint/blend_position", MoveRefference.sprint_anim)#blend between run and sprint
 	
 	#test if player stopped while sprinting
 	if Input.is_action_just_released("move_up") or Input.is_action_just_released("move_left") or Input.is_action_just_released("move_down") or Input.is_action_just_released("move_right"):
@@ -37,19 +39,20 @@ func _process(delta):
 				Animations.set("parameters/OneShotStop/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	
 	#transition to fall
-	Animations.set("parameters/BlendIrFall/blend_amount", MoveRefference.isgrounded_anim)
+	Animations.set("parameters/BlendIrFall/blend_amount", MoveRefference.isgrounded_anim)#blend to falling
 	
 	
 	if MoveRefference.has_jumped_anim == true:
 		#play jump animation
 		Animations.set("parameters/OneShotJump/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
-		Animations.set("parameters/OneShotLand/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
+		Animations.set("parameters/OneShotLand/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)# aborts landing animation in case the player jumps imideately after landing
 	#--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	#Combat State -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
-	Animations.set("parameters/BlendSpace2DMove/blend_position", CombatRefference.velocity_anim)
-	Animations.set("parameters/BlendSpace2DDodge/blend_position", CombatRefference.velocity_anim)
-	Animations.set("parameters/BlendCombatFall/blend_amount", CombatRefference.isgrounded_anim)
+	Animations.set("parameters/BlendSpace2DMove/blend_position", CombatRefference.velocity_anim)#blend between idle and the different directions
+	Animations.set("parameters/BlendSpace2DDodge/blend_position", CombatRefference.velocity_anim)#blend between the different dodge directions
+	Animations.set("parameters/BlendCombatFall/blend_amount", CombatRefference.isgrounded_anim)# blend to falling
 	
+	#switching between diferent attack animations
 	if CombatRefference.has_attacked_anim == true:
 		if AttackLR == true:
 			Animations.set("parameters/OneShotAttackRight/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
@@ -68,6 +71,7 @@ func _process(delta):
 		Animations.set("parameters/OneShotAttackLeft/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
 		Animations.set("parameters/OneShotAttackRight/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
 	
+	#fades out attack animations if player moves directly after attacking
 	if Input.is_action_pressed("move_up") or Input.is_action_pressed("move_left") or Input.is_action_pressed("move_down") or Input.is_action_pressed("move_right"):
 		if CombatRefference.can_attack:
 			Animations.set("parameters/OneShotAttackRight/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FADE_OUT)
@@ -75,5 +79,6 @@ func _process(delta):
 	#--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 func _on_area_3d_body_entered(body):
+	#triggering landing animations
 	Animations.set("parameters/OneShotLand/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	Animations.set("parameters/OneShotCombatLand/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)

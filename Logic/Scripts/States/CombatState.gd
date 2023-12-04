@@ -15,6 +15,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 # Variables for Movement
 @export var SPEED = 3.0
+@export var ATTACKING_MULTIPLIER = 0.0
 @export var JUMP_VELOCITY = 2
 @export var ACCELERATION = 0.3
 @export var DEACCELERATION = 0.07
@@ -22,6 +23,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 # used for calculations
 var acc_process
 var deacc_process
+var attack_multiplyer_process = 1.0
 
 var can_attack = true
 var can_dodge = true
@@ -63,6 +65,7 @@ func Physics_Update(delta: float):
 		body.velocity = (yLook.transform.basis * Vector3(0, 0, 7))
 		AttackTimer.start()#starts the attack timer
 		can_attack = false
+		attack_multiplyer_process = ATTACKING_MULTIPLIER
 		has_attacked_anim = true
 	else:
 		has_attacked_anim = false
@@ -82,11 +85,12 @@ func Physics_Update(delta: float):
 
 	# Get the input direction and handle the movement/deceleration.
 	var input_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	var direction = (yLook.transform.basis * Vector3(-input_dir.x, 0, -input_dir.y)).normalized()
+	var direction = (yLook.transform.basis * (Vector3(-input_dir.x, 0, -input_dir.y)).normalized()*attack_multiplyer_process)
 
-	if direction and can_attack:
-		body.velocity.x = lerp(body.velocity.x , direction.x * SPEED, acc_process)
-		body.velocity.z = lerp(body.velocity.z, direction.z * SPEED, acc_process)
+	if direction:
+		
+		body.velocity.x = lerp(body.velocity.x , direction.x * (SPEED), acc_process)
+		body.velocity.z = lerp(body.velocity.z, direction.z * (SPEED), acc_process)
 
 		# DODGE gets called only if direction true, otherwise we can infinitely accelerate by repeatetely dodging
 		if Input.is_action_just_pressed("jump") and body.is_on_floor() and can_dodge:
@@ -98,8 +102,8 @@ func Physics_Update(delta: float):
 			has_dodged_anim = false
 
 	else:
-		body.velocity.x = lerp(body.velocity.x , direction.x * SPEED, deacc_process)
-		body.velocity.z = lerp(body.velocity.z, direction.z * SPEED, deacc_process)
+		body.velocity.x = lerp(body.velocity.x , direction.x * (SPEED), deacc_process)
+		body.velocity.z = lerp(body.velocity.z, direction.z * (SPEED), deacc_process)
 
 	#transition to fall
 	if body.is_on_floor():
@@ -131,6 +135,7 @@ func Animate():
 #signals from attack and dodge timer
 func _on_attack_timer_timeout():
 	can_attack = true
+	attack_multiplyer_process = 1
 
 func _on_dodge_timer_timeout():
 	can_dodge = true

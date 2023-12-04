@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bhupojt0swb3m"]
+[gd_scene load_steps=24 format=3 uid="uid://bhupojt0swb3m"]
 
 [ext_resource type="Script" path="res://Logic/Scripts/ThirdPersonCharacter.gd" id="1_6dg0m"]
 [ext_resource type="Script" path="res://Logic/MouseLook.gd" id="1_aq7ch"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://dyoiix48ylhr3" path="res://Assets/Character/Scenes/gd_tpp_character_2023_11_16_06.tscn" id="13_ogfah"]
 [ext_resource type="Script" path="res://Logic/Scripts/Animation.gd" id="14_konks"]
 [ext_resource type="PackedScene" uid="uid://iim3p7nipj25" path="res://Assets/Character/Scenes/gd_tpp_character_2023_11_30_02.tscn" id="15_w6ubc"]
+[ext_resource type="PackedScene" uid="uid://cp2qoabw3r24k" path="res://Assets/Character/Scenes/gd_tpp_character_2023_12_04_02.tscn" id="16_mox3j"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_svcfi"]
 radius = 0.415637
@@ -63,7 +64,7 @@ one_shot = true
 
 [node name="DodgeTimer" type="Timer" parent="StateMachine/CombatState"]
 process_callback = 0
-wait_time = 0.5
+wait_time = 0.45
 one_shot = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -157,7 +158,12 @@ script = ExtResource("14_konks")
 MoveRefference = NodePath("../../../StateMachine/MoveState")
 CombatRefference = NodePath("../../../StateMachine/CombatState")
 
-[node name="GD-TPP-Character-2023-11-30-02" parent="smoothparent" node_paths=PackedStringArray("MoveRefference", "CombatRefference") instance=ExtResource("15_w6ubc")]
+[node name="GD-TPP-Character-2023-11-30-02" parent="smoothparent/OldModels" node_paths=PackedStringArray("MoveRefference", "CombatRefference") instance=ExtResource("15_w6ubc")]
+transform = Transform3D(0.52, 0, 0, 0, 0.52, 0, 0, 0, 0.52, 0, 0, 0)
+MoveRefference = NodePath("../../../StateMachine/MoveState")
+CombatRefference = NodePath("../../../StateMachine/CombatState")
+
+[node name="GD-TPP-Character-2023-12-04-02" parent="smoothparent" node_paths=PackedStringArray("MoveRefference", "CombatRefference") instance=ExtResource("16_mox3j")]
 transform = Transform3D(0.52, 0, 0, 0, 0.52, 0, 0, 0, 0.52, 0, 0, 0)
 MoveRefference = NodePath("../../StateMachine/MoveState")
 CombatRefference = NodePath("../../StateMachine/CombatState")
@@ -186,4 +192,5 @@ shape = SubResource("SphereShape3D_6xdm4")
 [connection signal="timeout" from="StateMachine/CombatState/DodgeTimer" to="StateMachine/CombatState" method="_on_dodge_timer_timeout"]
 [connection signal="body_entered" from="Area3D" to="smoothparent/OldModels/GD-TPP-Character-2023-11-14-02" method="_on_area_3d_body_entered"]
 [connection signal="body_entered" from="Area3D" to="smoothparent/OldModels/GD-TPP-Character-2023-11-16-06" method="_on_area_3d_body_entered"]
-[connection signal="body_entered" from="Area3D" to="smoothparent/GD-TPP-Character-2023-11-30-02" method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="Area3D" to="smoothparent/OldModels/GD-TPP-Character-2023-11-30-02" method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="Area3D" to="smoothparent/GD-TPP-Character-2023-12-04-02" method="_on_area_3d_body_entered"]
