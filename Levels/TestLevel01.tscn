@@ -104,6 +104,9 @@ damping_max = 10.0
 scale_min = 0.0
 scale_max = 0.2
 color_ramp = SubResource("GradientTexture1D_gqbd5")
+turbulence_noise_scale = 1.0
+turbulence_influence_min = 0.32
+turbulence_influence_max = 0.67
 
 [sub_resource type="QuadMesh" id="QuadMesh_no0sv"]
 
@@ -238,10 +241,9 @@ shape = SubResource("BoxShape3D_k7c6j")
 
 [node name="EnemyHitParticles" type="GPUParticles3D" parent="Dummy"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.19978, 0)
+visible = false
 material_override = SubResource("StandardMaterial3D_6yeky")
-emitting = false
 amount = 80
-one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_wa52r")
 draw_pass_1 = SubResource("QuadMesh_no0sv")
