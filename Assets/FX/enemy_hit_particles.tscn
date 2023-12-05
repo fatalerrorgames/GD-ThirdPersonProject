@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://ke58dvb8mukp"]
+
+[sub_resource type="Gradient" id="Gradient_0o6jr"]
+offsets = PackedFloat32Array(0, 0.275862, 0.594828)
+colors = PackedColorArray(1, 1, 1, 1, 0.286722, 0.820078, 1, 1, 1, 0.6105, 0.59, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_plbo8"]
+gradient = SubResource("Gradient_0o6jr")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6yeky"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = SubResource("GradientTexture2D_plbo8")
+billboard_mode = 1
+billboard_keep_scale = true
+proximity_fade_enabled = true
+proximity_fade_distance = 0.1
+
+[sub_resource type="Gradient" id="Gradient_3dj3h"]
+offsets = PackedFloat32Array(0.0216802, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_gqbd5"]
+gradient = SubResource("Gradient_3dj3h")
+use_hdr = true
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wa52r"]
+direction = Vector3(1, 1, 1)
+spread = 180.0
+initial_velocity_max = 10.0
+damping_max = 5.0
+scale_min = 0.0
+scale_max = 0.2
+color_ramp = SubResource("GradientTexture1D_gqbd5")
+turbulence_noise_scale = 1.0
+turbulence_influence_min = 0.32
+turbulence_influence_max = 0.67
+
+[sub_resource type="QuadMesh" id="QuadMesh_no0sv"]
+
+[node name="EnemyHitParticles" type="GPUParticles3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.19978, 0)
+material_override = SubResource("StandardMaterial3D_6yeky")
+amount = 80
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_wa52r")
+draw_pass_1 = SubResource("QuadMesh_no0sv")

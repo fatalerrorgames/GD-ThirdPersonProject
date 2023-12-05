@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bhupojt0swb3m"]
+[gd_scene load_steps=17 format=3 uid="uid://bhupojt0swb3m"]
 
 [ext_resource type="Script" path="res://Logic/Scripts/ThirdPersonCharacter.gd" id="1_6dg0m"]
 [ext_resource type="Script" path="res://Logic/MouseLook.gd" id="1_aq7ch"]
@@ -6,16 +6,9 @@
 [ext_resource type="Script" path="res://Logic/Scripts/States/MoveState.gd" id="3_d3rn7"]
 [ext_resource type="Script" path="res://Logic/Scripts/smoothparent.gd" id="4_075td"]
 [ext_resource type="Script" path="res://Logic/Scripts/States/CombatState.gd" id="4_bixtw"]
-[ext_resource type="PackedScene" uid="uid://b7aomw74ltcos" path="res://Assets/GD-TPP-Character-2023-10-16-10.gltf" id="5_dw1ik"]
 [ext_resource type="Material" uid="uid://b08pu4garfulv" path="res://Assets/Materials/Orange.tres" id="5_p0egy"]
 [ext_resource type="Script" path="res://Logic/Scripts/States/Weapons/SwordState.gd" id="6_iy2yh"]
 [ext_resource type="Script" path="res://Logic/Scripts/States/Weapons/WeaponMasterState.gd" id="7_hgcxk"]
-[ext_resource type="PackedScene" uid="uid://ceifjmyjmfhau" path="res://Assets/GD-TPP-Character-2023-11-07-16.gltf" id="10_l62rq"]
-[ext_resource type="PackedScene" uid="uid://dda03g1v0ti4f" path="res://Assets/Character/Scenes/gd_tpp_character_2023_11_14_01.tscn" id="11_yk7dp"]
-[ext_resource type="PackedScene" uid="uid://c6doicrawad68" path="res://Assets/Character/Scenes/gd_tpp_character_2023_11_16_05.tscn" id="12_ciiqs"]
-[ext_resource type="PackedScene" uid="uid://dyoiix48ylhr3" path="res://Assets/Character/Scenes/gd_tpp_character_2023_11_16_06.tscn" id="13_ogfah"]
-[ext_resource type="Script" path="res://Logic/Scripts/Animation.gd" id="14_konks"]
-[ext_resource type="PackedScene" uid="uid://iim3p7nipj25" path="res://Assets/Character/Scenes/gd_tpp_character_2023_11_30_02.tscn" id="15_w6ubc"]
 [ext_resource type="PackedScene" uid="uid://cp2qoabw3r24k" path="res://Assets/Character/Scenes/gd_tpp_character_2023_12_04_02.tscn" id="16_mox3j"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_svcfi"]
@@ -131,38 +124,6 @@ mesh = SubResource("SphereMesh_rnbpr")
 skeleton = NodePath("../MeshInstance3D")
 surface_material_override/0 = SubResource("StandardMaterial3D_kob78")
 
-[node name="OldModels" type="Node3D" parent="smoothparent"]
-visible = false
-
-[node name="GD-TPP-Character-2023-10-16-10" parent="smoothparent/OldModels" instance=ExtResource("5_dw1ik")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
-visible = false
-
-[node name="GD-TPP-Character-2023-11-07-16" parent="smoothparent/OldModels" instance=ExtResource("10_l62rq")]
-transform = Transform3D(0.52, 0, 0, 0, 0.52, 0, 0, 0, 0.52, 0, 0, 0)
-visible = false
-
-[node name="GD-TPP-Character-2023-11-14-02" parent="smoothparent/OldModels" instance=ExtResource("11_yk7dp")]
-transform = Transform3D(0.52, 0, 0, 0, 0.52, 0, 0, 0, 0.52, 0, 0, 0)
-visible = false
-script = null
-
-[node name="GD-TPP-Character-2023-11-16-05" parent="smoothparent/OldModels" instance=ExtResource("12_ciiqs")]
-transform = Transform3D(0.52, 0, 0, 0, 0.52, 0, 0, 0, 0.52, 0, 0, 0)
-script = null
-
-[node name="GD-TPP-Character-2023-11-16-06" parent="smoothparent/OldModels" node_paths=PackedStringArray("MoveRefference", "CombatRefference") instance=ExtResource("13_ogfah")]
-transform = Transform3D(0.52, 0, 0, 0, 0.52, 0, 0, 0, 0.52, 0, 0, 0)
-visible = false
-script = ExtResource("14_konks")
-MoveRefference = NodePath("../../../StateMachine/MoveState")
-CombatRefference = NodePath("../../../StateMachine/CombatState")
-
-[node name="GD-TPP-Character-2023-11-30-02" parent="smoothparent/OldModels" node_paths=PackedStringArray("MoveRefference", "CombatRefference") instance=ExtResource("15_w6ubc")]
-transform = Transform3D(0.52, 0, 0, 0, 0.52, 0, 0, 0, 0.52, 0, 0, 0)
-MoveRefference = NodePath("../../../StateMachine/MoveState")
-CombatRefference = NodePath("../../../StateMachine/CombatState")
-
 [node name="GD-TPP-Character-2023-12-04-02" parent="smoothparent" node_paths=PackedStringArray("MoveRefference", "CombatRefference") instance=ExtResource("16_mox3j")]
 transform = Transform3D(0.52, 0, 0, 0, 0.52, 0, 0, 0, 0.52, 0, 0, 0)
 MoveRefference = NodePath("../../StateMachine/MoveState")
@@ -190,7 +151,4 @@ shape = SubResource("SphereShape3D_6xdm4")
 
 [connection signal="timeout" from="StateMachine/CombatState/AttackTimer" to="StateMachine/CombatState" method="_on_attack_timer_timeout"]
 [connection signal="timeout" from="StateMachine/CombatState/DodgeTimer" to="StateMachine/CombatState" method="_on_dodge_timer_timeout"]
-[connection signal="body_entered" from="Area3D" to="smoothparent/OldModels/GD-TPP-Character-2023-11-14-02" method="_on_area_3d_body_entered"]
-[connection signal="body_entered" from="Area3D" to="smoothparent/OldModels/GD-TPP-Character-2023-11-16-06" method="_on_area_3d_body_entered"]
-[connection signal="body_entered" from="Area3D" to="smoothparent/OldModels/GD-TPP-Character-2023-11-30-02" method="_on_area_3d_body_entered"]
 [connection signal="body_entered" from="Area3D" to="smoothparent/GD-TPP-Character-2023-12-04-02" method="_on_area_3d_body_entered"]
