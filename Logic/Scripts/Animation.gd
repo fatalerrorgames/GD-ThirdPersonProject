@@ -10,6 +10,9 @@ extends Node3D
 
 var StateName #stores the state for transition between move and combat state
 var AttackLR = true
+var blendfix = .0
+
+var blendfix_process = .0
 
 func _ready():
 	pass # Replace with function body.
@@ -52,16 +55,17 @@ func _process(delta):
 	Animations.set("parameters/BlendSpace2DDodge/blend_position", CombatRefference.velocity_anim)#blend between the different dodge directions
 	Animations.set("parameters/BlendCombatFall/blend_amount", CombatRefference.isgrounded_anim)# blend to falling
 
-	#fix blending for left + up
-	if Input.is_action_pressed("move_up") and Input.is_action_pressed("move_left"):
-		Animations.set("parameters/BlendSpace2DMove/3/blend_position", 1)
+	#fix blending for down + right and oup + left
+	blendfix_process = lerp(blendfix_process, blendfix, 0.3)
+	print(blendfix_process)
+
+	if Input.is_action_pressed("move_down") and Input.is_action_pressed("move_right") or Input.is_action_pressed("move_up") and Input.is_action_pressed("move_left"):
+		blendfix = 1.0
 	else:
-		Animations.set("parameters/BlendSpace2DMove/3/blend_position", 0)
-	#fix blending for down + right
-	if Input.is_action_pressed("move_down") and Input.is_action_pressed("move_right"):
-		Animations.set("parameters/BlendSpace2DMove/4/blend_position", 1)
-	else:
-		Animations.set("parameters/BlendSpace2DMove/4/blend_position", 0)
+		blendfix = 0.0
+
+	Animations.set("parameters/BlendSpace2DMove/4/blend_position", blendfix_process)
+	Animations.set("parameters/BlendSpace2DMove/3/blend_position", blendfix_process)
 
 	#switching between diferent attack animations
 	if CombatRefference.has_attacked_anim == true:
