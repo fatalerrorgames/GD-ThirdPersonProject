@@ -1,0 +1,148 @@
+[gd_scene load_steps=10 format=3 uid="uid://d2ck2gf2d650h"]
+
+[ext_resource type="Script" path="res://Levels/MenuScripts/StartGame.gd" id="1_u5eip"]
+[ext_resource type="Script" path="res://Levels/MenuScripts/QuitGame.gd" id="2_2y146"]
+[ext_resource type="PackedScene" uid="uid://cp2qoabw3r24k" path="res://Assets/Character/Scenes/gd_tpp_character_2023_12_04_02.tscn" id="3_5hxix"]
+[ext_resource type="Script" path="res://Levels/MenuScripts/ResolutionSlider.gd" id="3_mvl38"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ylild"]
+content_margin_left = 4.0
+bg_color = Color(0.192157, 0.192157, 0.192157, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mtnug"]
+content_margin_left = 4.0
+bg_color = Color(0.12549, 0.12549, 0.12549, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7dttq"]
+content_margin_left = 4.0
+bg_color = Color(0.192157, 0.192157, 0.192157, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_85tqb"]
+content_margin_left = 4.0
+bg_color = Color(0.12549, 0.12549, 0.12549, 1)
+
+[sub_resource type="Environment" id="Environment_bt3rp"]
+background_mode = 1
+tonemap_mode = 2
+glow_enabled = true
+glow_hdr_threshold = 0.35
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 1440.0
+offset_bottom = 1080.0
+
+[node name="Button" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 167.0
+offset_top = 168.0
+offset_right = 444.0
+offset_bottom = 200.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_ylild")
+theme_override_styles/hover = SubResource("StyleBoxFlat_mtnug")
+text = "Start"
+alignment = 0
+script = ExtResource("1_u5eip")
+
+[node name="Button2" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 167.0
+offset_top = 211.0
+offset_right = 444.0
+offset_bottom = 243.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_7dttq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_85tqb")
+text = "Quit"
+alignment = 0
+script = ExtResource("2_2y146")
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 0
+offset_left = 136.0
+offset_top = 45.0
+offset_right = 138.0
+offset_bottom = 542.0
+
+[node name="ColorRect2" type="ColorRect" parent="Control"]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 141.0
+offset_right = 781.0
+offset_bottom = 143.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control"]
+layout_mode = 0
+offset_left = 158.0
+offset_top = 69.0
+offset_right = 823.0
+offset_bottom = 162.0
+theme_override_font_sizes/normal_font_size = 46
+text = "Third - Person Character"
+
+[node name="HSlider" type="HSlider" parent="Control" node_paths=PackedStringArray("DisplayLabel")]
+layout_mode = 0
+offset_left = 167.0
+offset_top = 469.0
+offset_right = 444.0
+offset_bottom = 485.0
+min_value = 0.1
+max_value = 1.0
+step = 0.05
+value = 1.0
+script = ExtResource("3_mvl38")
+DisplayLabel = NodePath("ScaleDisplayLabel")
+
+[node name="Label" type="Label" parent="Control/HSlider"]
+layout_mode = 0
+offset_top = -28.0
+offset_right = 40.0
+offset_bottom = -5.0
+text = "Resolution Scale:"
+
+[node name="Label" type="Label" parent="Control/HSlider/Label"]
+layout_mode = 0
+offset_top = 44.0
+offset_right = 131.0
+offset_bottom = 70.0
+text = "(Restart the game to apply changes)"
+
+[node name="ScaleDisplayLabel" type="Label" parent="Control/HSlider"]
+layout_mode = 0
+offset_left = 137.0
+offset_top = -28.0
+offset_right = 264.0
+offset_bottom = -2.0
+text = "100
+"
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.875, 2.17, 6)
+keep_aspect = 0
+environment = SubResource("Environment_bt3rp")
+
+[node name="GD-TPP-Character-2023-12-04-02" parent="Node3D" instance=ExtResource("3_5hxix")]
+transform = Transform3D(0.941471, 0, -0.337095, 0, 1, 0, 0.337095, 0, 0.941471, -0.437, 0, 0.053)
+script = null
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.405, 2.466, 2.572)
+light_energy = 0.717
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8, 3.346, 2.492)
+light_energy = 3.5
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.515, 4.179, -2.408)
+light_color = Color(0, 0.984314, 0.898039, 1)
+light_energy = 6.026

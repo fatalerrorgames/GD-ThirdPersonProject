@@ -193,7 +193,7 @@ shape = SubResource("CapsuleShape3D_0cgl8")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Dummy"]
 transform = Transform3D(0.5, 0, 0, 0, 1.9, 0, 0, 0, 0.5, 0, 0.958192, 0)
-gi_mode = 2
+gi_mode = 0
 mesh = SubResource("BoxMesh_0f2r3")
 surface_material_override/0 = ExtResource("4_x02rg")
 

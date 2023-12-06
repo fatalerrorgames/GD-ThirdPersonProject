@@ -56,8 +56,7 @@ func _process(delta):
 	Animations.set("parameters/BlendCombatFall/blend_amount", CombatRefference.isgrounded_anim)# blend to falling
 
 	#fix blending for down + right and oup + left
-	blendfix_process = lerp(blendfix_process, blendfix, 0.3)
-	print(blendfix_process)
+	blendfix_process = lerp(blendfix_process, blendfix, 0.1)
 
 	if Input.is_action_pressed("move_down") and Input.is_action_pressed("move_right") or Input.is_action_pressed("move_up") and Input.is_action_pressed("move_left"):
 		blendfix = 1.0
