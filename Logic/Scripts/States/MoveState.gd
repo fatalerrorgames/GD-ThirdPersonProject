@@ -103,7 +103,7 @@ func Physics_Update(delta: float):
 		body.velocity.z = lerp(body.velocity.z, direction.z * SPEED, deacc_process)
 	
 	#transition to CombatState
-	if Input.is_action_just_pressed("attack") or Input.is_action_just_pressed("draw"):
+	if Input.is_action_just_pressed("draw"):
 		Transitioned.emit(self, "CombatState")
 		
 #Animation Logic (setting variables etc)

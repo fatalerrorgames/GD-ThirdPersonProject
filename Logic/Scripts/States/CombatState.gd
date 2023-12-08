@@ -94,10 +94,10 @@ func Physics_Update(delta: float):
 
 		# DODGE gets called only if direction true, otherwise we can infinitely accelerate by repeatetely dodging
 		if Input.is_action_just_pressed("jump") and body.is_on_floor() and can_dodge:
+			has_dodged_anim = true
 			body.velocity = Vector3(body.velocity.x * 4, JUMP_VELOCITY, body.velocity.z * 4)
 			DodgeTimer.start()#starts the attack timer
 			can_dodge = false
-			has_dodged_anim = true
 		else:
 			has_dodged_anim = false
 

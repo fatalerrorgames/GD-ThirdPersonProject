@@ -9,4 +9,4 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	self.global_transform.basis = lerp(global_transform.basis, Parent.global_transform.basis, 0.1)
+	self.global_transform.basis = lerp(global_transform.basis, Parent.global_transform.basis, 0.1 * (delta*60))

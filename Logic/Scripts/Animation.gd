@@ -18,16 +18,16 @@ func _ready():
 	pass # Replace with function body.
 
 
-func _process(delta):
+func _physics_process(delta):
 	StateName = CombatRefference.state_name_anim #get StateName from CombatState
 
 	Animations.set("parameters/TransitionCombatMove/transition_request", StateName)#transition between combat and move
 	
 	#draw and sheathe
-	if Input.is_action_just_pressed("draw") and CombatRefference.can_attack and CombatRefference.can_dodge or Input.is_action_just_pressed("attack") and CombatRefference.has_drawn_anim == true and CombatRefference.can_attack and CombatRefference.can_dodge:
+	if Input.is_action_just_pressed("draw") and CombatRefference.can_attack and CombatRefference.can_dodge:
 		Animations.set("parameters/OneShotDraw/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 		AttackLR = true
-	if Input.is_action_just_pressed("draw") and CombatRefference.has_drawn_anim == false and CombatRefference.can_attack and CombatRefference.can_dodge:
+	if Input.is_action_just_pressed("draw") and CombatRefference.has_drawn_anim == true and CombatRefference.can_attack and CombatRefference.can_dodge:
 		Animations.set("parameters/OneShotSheathe/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 
 		
