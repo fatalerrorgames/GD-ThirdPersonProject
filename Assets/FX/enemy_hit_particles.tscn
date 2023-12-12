@@ -1,4 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://ke58dvb8mukp"]
+[gd_scene load_steps=9 format=3 uid="uid://ke58dvb8mukp"]
+
+[ext_resource type="Script" path="res://Assets/FX/Scripts/enemy_hit_particles.gd" id="1_w57px"]
 
 [sub_resource type="Gradient" id="Gradient_0o6jr"]
 offsets = PackedFloat32Array(0, 0.275862, 0.594828)
@@ -49,3 +51,4 @@ one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_wa52r")
 draw_pass_1 = SubResource("QuadMesh_no0sv")
+script = ExtResource("1_w57px")

@@ -354,7 +354,7 @@ surface_material_override/1 = ExtResource("4_3t32a")
 surface_material_override/2 = ExtResource("5_1b41w")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="metarig" index="1"]
-transform = Transform3D(-0.985151, 0.130583, -0.111468, -0.14975, -0.971098, 0.185858, -0.083976, 0.199791, 0.976233, -0.57412, 1.53118, 0.0120013)
+transform = Transform3D(-0.985151, 0.130581, -0.111468, -0.149748, -0.971098, 0.185859, -0.0839768, 0.199792, 0.976233, -0.574123, 1.53118, 0.012001)
 visible = false
 bone_name = "hand.R"
 bone_idx = 34
@@ -381,7 +381,7 @@ mesh = SubResource("BoxMesh_ex305")
 skeleton = NodePath("../../metarig/Skeleton3D")
 
 [node name="BoneAttachment3D2" type="BoneAttachment3D" parent="metarig" index="2"]
-transform = Transform3D(0.999971, 0.00164499, 0.00742079, -0.00190794, 0.999365, 0.0355655, -0.00735758, -0.0355787, 0.99934, -0.0063154, 2.49742, 0.0800093)
+transform = Transform3D(0.999971, 0.001645, 0.00742084, -0.00190796, 0.999365, 0.0355666, -0.00735762, -0.0355798, 0.99934, -0.00631537, 2.49742, 0.0800085)
 bone_name = "spine.003"
 bone_idx = 3
 use_external_skeleton = true

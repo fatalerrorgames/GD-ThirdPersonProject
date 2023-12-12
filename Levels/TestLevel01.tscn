@@ -81,6 +81,7 @@ size = Vector3(0.581065, 2.01061, 0.587412)
 albedo_color = Color(1, 0, 1, 1)
 
 [node name="Node3D" type="Node3D"]
+editor_description = "Contains Everything in the Level"
 script = ExtResource("1_fyeas")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -226,5 +227,7 @@ spring_length = -4.0
 [node name="Camera3D" type="Camera3D" parent="SmoothCam/SpringArm3D"]
 transform = Transform3D(-1, -2.84621e-08, -8.26599e-08, 0, 0.945519, -0.325568, 8.74228e-08, -0.325568, -0.945519, 0, 0, -4)
 current = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 
 [connection signal="area_entered" from="Dummy/HitBox" to="Dummy" method="_on_hit_box_area_entered"]
