@@ -63,13 +63,13 @@ func Physics_Update(delta: float):
 	# Handle Jump.
 	if Input.is_action_just_pressed("jump") and body.is_on_floor():
 		body.velocity.y = JUMP_VELOCITY
-		has_jumped_anim = true
+		has_jumped_anim = true#only important for animation
 
 	else:
 		has_jumped_anim = false
 		
 	
-	#transition to fall
+	#animation transition to fall
 	if body.is_on_floor():
 		isgrounded_anim = lerp(isgrounded_anim, 0.0, 0.15)
 		has_landed_anim = true
@@ -87,21 +87,16 @@ func Physics_Update(delta: float):
 	var input_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	var direction = (yLook.transform.basis * Vector3(-input_dir.x, 0, -input_dir.y)).normalized()
 	
-	input_velocity_anim = direction
-	#orient climb raycasts along input direction
-	#if RaycastParent.global_transform.origin != RaycastParent.global_transform.origin + -direction:
-	#	RaycastParent.look_at_from_position(RaycastParent.global_transform.origin, RaycastParent.global_transform.origin + -direction)
-	
+	input_velocity_anim = direction #important for animation
+
+	#accelerate decalerate interpolation
 	if direction:
 		body.velocity.x = lerp(body.velocity.x , direction.x * (SPEED * sprint_multiplier_process), acc_process)
 		body.velocity.z = lerp(body.velocity.z, direction.z * (SPEED * sprint_multiplier_process), acc_process)
-		
-		
-	
 	else:
 		body.velocity.x = lerp(body.velocity.x , direction.x * SPEED, deacc_process)
 		body.velocity.z = lerp(body.velocity.z, direction.z * SPEED, deacc_process)
-	
+
 	#transition to CombatState
 	if Input.is_action_just_pressed("draw"):
 		Transitioned.emit(self, "CombatState")
